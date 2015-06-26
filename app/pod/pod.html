@@ -1,0 +1,25 @@
+<div class="metrilyx-pod">
+    <div class="seperator light"></div>
+    <!--<div class="pod-header">
+        <span class="pull-right" style="padding-right:8px">
+            <span style="padding:0 12px"><a href="#/{{dashboardId}}/{{rowIndex}}/{{columnIndex}}/{{podIndex}}"><span class="glyphicon glyphicon-link pod-config-btn"></span></a></span><span style="padding-left:12px" ng-click="toggleControls()"><span class="glyphicon glyphicon-cog pod-config-btn"></span></span>
+        </span>
+        <span class="pod-handle" style="font-weight:bold;cursor:move;color:#555" title="Move Pod">
+            <span class="glyphicon glyphicon-option-vertical" style="font-weight:bold"></span>
+            <span> {{pod.name}}</span>
+        </span> 
+    </div>--><!--ng-if="controlsVisible"-->
+    <pod-controls></pod-controls>
+    <div ng-switch="pod.orientation" class="pod-content {{pod.orientation}}">
+        <div ng-switch-when="horizontal" class="row" style="margin:0" ui-sortable="panelDragDropConfig" data-pod-dnd="horizontal" ng-model="pod.panels">
+            <div ng-repeat="graph in pod.panels" class="col-sm-{{pod.panels|columnWidth}}" style="padding:0">
+                <panel-container graph="graph" panels="pod.panels" class="graph" dashboard-id="dashboardId" row-index="rowIndex" column-index="columnIndex" pod-index="podIndex" is-a-template="isATemplate()"></panel-container>
+            </div>
+        </div>
+        <div ng-switch-default ui-sortable="panelDragDropConfig" data-pod-dnd="vertical" ng-model="pod.panels">
+            <div ng-repeat="graph in pod.panels">
+                <panel-container graph="graph" panels="pod.panels" request-data="requestData" class="graph" dashboard-id="dashboardId" row-index="rowIndex" column-index="columnIndex" pod-index="podIndex" panel-index="$index" is-a-template="isATemplate()"></panel-container>
+            </div>
+        </div>
+    </div>
+</div>

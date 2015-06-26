@@ -1,0 +1,193 @@
+<div ng-if="controlsVisible" style="margin-top:4px;margin-bottom:4px;">
+    <div class="panel-controls">
+        <svg width="16" height="8" class="controls-arrow" style="position:absolute;top:-8px;left:3px">
+            <polygon points="0,8 16,8 8,0"></polygon>
+        </svg>
+        <div style="margin:0 20px 15px 20px;padding-top:5px;text-align:center">
+            <span ng-click="selectedConfig='general';" class="panel-config-item" ng-class="{'active': selectedConfig=='general'}">General</span><span ng-click="selectedConfig='datasources';" class="panel-config-item" ng-class="{'active': selectedConfig=='datasources'}">Datasources</span><span ng-click="selectedConfig='secondaries';" class="panel-config-item" ng-class="{'active': selectedConfig=='secondaries'}">Secondaries</span>
+        </div>
+        <div ng-if="selectedConfig=='general'" class="panel-config-item-content">
+            <div style="padding:0px 20px" class="input-group-list">
+                <!--
+                <div class="input-group input-group-sm" title="Panel name">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-header"></span>
+                    </span>
+                    <input type="text" class="form-control" ng-model="graph.name" placeholder="Panel Name">
+                </div>
+                -->
+                <div class="input-group input-group-sm" title="Panel size">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-resize-full"></span>
+                    </span>
+                    <select class="form-control app-select" ng-model="graph.size">
+                        <option value="small">small</option>
+                        <option value="medium">medium</option>
+                        <option value="large">large</option>
+                    </select>
+                </div>
+                <div class="input-group input-group-sm" title="Panel type">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-list"></span>
+                    </span>
+                    <select class="form-control app-select" ng-model="graph.type">
+                        <option value="area">area</option>
+                        <option value="bar">bar</option>
+                        <option value="column">column</option>
+                        <option value="line">line</option>
+                        <option value="list">list</option>
+                        <option value="pie">pie</option>
+                        <option value="stacked">stacked</option>
+                        <option value="text">text</option>
+                    </select>
+                </div>
+                <div class="input-group input-group-sm" title="Chart options">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-picture"></span>
+                    </span>
+                    <textarea ng-model="graph.graphics" class="form-control code-block" json-editor autosize-to-content></textarea>
+                </div>
+                <div class="input-group input-group-sm" title="Refresh Interval">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                    <input type="number" ng-model="graph.refresh" class="form-control">
+                </div>
+                <div class="input-group input-group-sm" title="Graphing Library">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-book"></span>
+                    </span>
+                    <select class="form-control app-select" ng-model="graph.library" ng-options="lib for lib in ['highcharts']">
+                    </select>
+                </div>
+            </div>
+            <div class="panel-controls-footer">
+                <button class="circle-btn circle-btn-sm light" ng-click="panels.splice(panels.indexOf(graph),1)">
+                    <span class="glyphicon glyphicon-trash" style="position:relative;left:-1px"></span>
+                </button>
+            </div>
+        </div>
+        <div ng-if="selectedConfig=='datasources'" class="panel-config-item-content">
+            <div class="datasource-list" ui-sortable="dsDragDropConfig" ng-model="graph.datasources">
+                <div class="seperator dark" style="margin:5px 0"></div>
+                <div ng-repeat="datasource in graph.datasources" class="datasource-list-item">
+                    <table style="width:100%"><tr style="font-size:13px;background:#">
+                        <td class="text-left" style="padding:5px 10px;width:35px;border-radius:3px 0 0 0">
+                            <span class="glyphicon glyphicon-option-vertical ds-mv-handle"></span>
+                        </td>
+                        <td class="text-left" style="word-wrap:break-word;word-break:break-all;padding:5px 0;cursor:pointer" data-toggle="collapse" data-target="[data-ds-id='{{graph.id}}-{{$index}}']" style="cursor:pointer;">{{datasource|datasourceLabel}}</td>
+                        <td class="text-right" style="padding:0px 10px;border-radius:0 3px 0 0">
+                            <span class="glyphicon glyphicon-remove rm-btn" ng-click="graph.datasources.splice(graph.datasources.indexOf(datasource),1)" style="position:relative;top:2px"></span>
+                        </td>
+                    </tr></table>
+                    <!--
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-option-vertical ds-mv-handle"></span>
+                        </span>
+                        <select class="form-control app-select" ng-options="aggr for aggr in ['sum', 'min', 'max', 'avg']" ng-model="datasource.provider.query.aggregator"></select>
+                        <span class="input-group-addon" style="border-left:none;border-right:none" title="Rate">
+                            <input type="checkbox" ng-model="datasource.provider.query.rate">
+                        </span>
+                        <input type="text" class="form-control" ng-model="datasource.provider.query.metric">
+                        <span class="input-group-addon" style="border-left:none;border-right:none">{</span>
+                        <input type="text" class="form-control" ng-model="datasource.provider.query.tags" autocomplete search-type="'opentsdb:tags'" provider-name="datasource.provider.name" inline-tags>
+                        <span class="input-group-addon" style="border-left:none;">}</span>
+                        <span class="input-group-addon" style="border-left:none" data-toggle="collapse" data-target="[data-ds-id='{{graph.id}}-{{$index}}']">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </span>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-remove rm-btn" ng-click="graph.datasources.splice(graph.datasources.indexOf(datasource),1)" style="position:relative;top:2px"></span>
+                        </span>
+                    </div>-->
+                    <!--
+                    <div data-toggle="collapse" data-target="[data-ds-id='{{graph.id}}-{{$index}}']" style="cursor:pointer;">
+                        <div class="row datasource-list-item-hdr" style="margin:0;">
+                            <div class="col-md-8" style="padding:0">
+                                <div style="word-wrap:break-work;word-break:break-all;font-weight:bold">
+                                    <span class="glyphicon glyphicon-option-vertical ds-mv-handle"></span><span style="padding:0 10px;">{{datasource|datasourceLabel}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-right" style="padding:0">
+                                <span class="glyphicon glyphicon-remove rm-btn" ng-click="graph.datasources.splice(graph.datasources.indexOf(datasource),1)"></span>
+                            </div>
+                        </div>
+                    </div>--><!--border:1px solid #888;border-top:none;border-radius:0 0 3px 3px-->
+                    <div class="collapse" data-ds-id="{{graph.id}}-{{$index}}">
+                        <div style="padding:10px;">
+                            <div datasource="datasource" datasource-provider></div>
+                            <div class="seperator dark" style="margin:10px 0"></div>
+                            <ul style="margin-bottom:0;padding-left:0" class="input-group-list">
+                                
+                                <li class="input-group input-group-sm">
+                                    <span class="input-group-addon">Alias</span>
+                                    <textarea ng-model="datasource.alias" class="form-control code-block" autosize-to-content>{{datasource.alias}}</textarea>
+                                </li>
+                                <li class="input-group input-group-sm">
+                                    <span class="input-group-addon">Transform</span>
+                                    <textarea ng-model="datasource.transform" class="form-control code-block" autosize-to-content>{{datasource.transform}}</textarea>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="seperator dark" style="margin:5px 0 0 0"></div>
+                </div>
+            </div>
+            <div class="panel-controls-footer">
+                <div>
+                    <button class="circle-btn circle-btn-sm light" ng-click="addNewDatasource()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <span style="padding:5px"></span>
+                    <button class="circle-btn circle-btn-sm light" data-toggle="collapse" data-target="[data-cp-id={{graph.id}}]">
+                        <span class="glyphicon glyphicon-retweet"></span>
+                    </button>
+                </div>
+                <!--
+                <copy-pane content-id="{{graph.id}}" index-slice="datasourceIndex" copy-func="copyDatasourceToPanel(cp, parentComp)" parent-component="graph"></copy-pane>
+                -->
+                <copy-pane content-id="{{graph.id}}" label="'Datasources'" copyable-list="graph.datasources" copy-type="'datasource'"></copy-pane>
+            </div>
+        </div>
+        <div ng-if="selectedConfig=='secondaries'" class="panel-config-item-content">
+            <div class="secondaries-list">
+                <div class="seperator dark"></div>
+                <div ng-repeat="secondary in graph.secondaries" class="secondaries-list-item">
+                    <div style="padding:10px;text-align:right">
+                        <span class="glyphicon glyphicon-remove rm-btn" ng-click="graph.secondaries.splice(graph.secondaries.indexOf(secondary),1)"></span>
+                    </div>
+                    <ul style="margin-bottom:0;padding:0" class="input-group-list">
+                        <li class="input-group input-group-sm">
+                            <span class="input-group-addon">Alias</span>
+                            <textarea ng-model="secondary.alias" class="form-control code-block" autosize-to-content>{{secondary.alias}}</textarea>
+                        </li>
+                        <li class="input-group input-group-sm">
+                            <span class="input-group-addon">Operation</span>
+                            <textarea ng-model="secondary.operation" class="form-control code-block" autosize-to-content>{{secondary.operation}}</textarea>
+                        </li>
+                        <li class="input-group input-group-sm">
+                            <div class="input-group-addon">Aggregator</div>
+                            <select class="form-control app-select" ng-model="secondary.aggregator" style="border-radius:2px">
+                                <option value="avg">avg</option>
+                                <option value="max">max</option>
+                                <option value="min">min</option>
+                                <option value="sum">sum</option>
+                            </select>
+                        </li>
+                    </ul>
+                    <div class="seperator dark" style="margin-top:10px"></div>
+                </div>
+            </div>
+            <div class="panel-controls-footer">
+                <button class="circle-btn circle-btn-sm light" style="position:relative;left:1px;" ng-click="addNewSecondary()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <span style="padding:5px"></span>
+                <button class="circle-btn circle-btn-sm light">
+                    <span class="glyphicon glyphicon-retweet"></span>
+                </button>
+            </div>
+            <!-- end secondaries -->
+        </div>
+    </div>
+</div>

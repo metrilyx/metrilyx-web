@@ -1,0 +1,10 @@
+<div id="notification-panel">
+    <div ng-repeat="notification in notifications" class="notification alert alert-{{notification.severity}}">
+        <div>
+            <span><b>{{notification.title}}</b></span>
+            <span class="glyphicon glyphicon-remove pull-right" ng-click="notifications.splice(notifications.indexOf(notification),1)" style="cursor:pointer">
+            </span>
+        </div>
+        <div>{{notification.message}}</div>
+    </div>
+</div>

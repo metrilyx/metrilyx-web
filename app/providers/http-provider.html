@@ -1,0 +1,32 @@
+<div class="input-group input-group-sm">
+    <div class="input-group-addon" style="border:none;">URL</div>
+    <input type="text" class="form-control code-block" ng-model="provider.url" style="border-radius:2px;">
+</div>
+<div style="margin:3px"></div>
+<div class="input-group input-group-sm nobg">
+    <span class="input-group-addon" style="border:none">Method</span>
+    <select class="form-control app-select" style="border-radius:2px" ng-model="provider.method">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+    </select>
+</div>
+<div style="margin:3px"></div>
+<div class="input-group input-group-sm">
+    <div class="input-group-addon" style="border:none;">Params</div>
+    <textarea type="text" class="form-control code-block" ng-model="provider.params" style="border-radius:2px;" http-provider-params></textarea>
+</div>
+<div style="margin:3px"></div>
+<div class="input-group input-group-sm">
+    <div class="input-group-addon" style="border:none;">Body</div>
+    <textarea type="text" class="form-control code-block" ng-model="provider.body" style="border-radius:2px;" http-provider-body></textarea>
+</div>
+<div style="margin:3px"></div>
+<div class="input-group input-group-sm">
+    <div class="input-group-addon" style="border:none;">Normalizer</div>
+    <textarea type="text" class="form-control code-block" ng-model="provider.normalizer" style="border-radius:2px;"></textarea>
+</div>
+<div style="margin:3px"></div>
+<div class="input-group input-group-sm">
+    <div class="input-group-addon" style="border:none">Aggregator</div>
+    <select class="form-control app-select" ng-model="provider.aggregator" style="border-radius:2px" ng-options="aggr for aggr in aggregators"></select>
+</div>

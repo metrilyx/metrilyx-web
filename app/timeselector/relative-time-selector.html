@@ -1,0 +1,29 @@
+<table style="width:100%;">
+    <tr>
+        <!--<td style="height:10px;border:1px solid #ccc;width:{{relativeTimeScale.1w}}%"></td>-->
+        <td class="time-section" ng-click="setTimeWindow('1d')" ng-class="{selected: timeDimension.types.Relative.start=='1d'}" style="width:{{relativeTimeScale.1d}}%;">
+            <div style="font-size:10px;">1d</div>
+            <div class="time-slice"></div>
+        </td>
+        <td class="time-section" ng-class="{selected: timeDimension.types.Relative.start=='12h'}" style="width:{{relativeTimeScale.12h}}%;" ng-click="setTimeWindow('12h')">
+            <div style="font-size:10px;">12h</div>
+            <div class="time-slice"></div>
+        </td>
+        <td class="time-section" ng-class="{selected: timeDimension.types.Relative.start=='6h'}" style="width:{{relativeTimeScale.6h}}%;" ng-click="setTimeWindow('6h')">
+            <div style="font-size:10px;">6h</div>
+            <div class="time-slice"></div>
+        </td>
+        <td class="time-section" ng-class="{selected: timeDimension.types.Relative.start=='3h'}" style="width:{{relativeTimeScale.3h}}%;" ng-click="setTimeWindow('3h')">
+            <div style="font-size:10px;">3h</div>
+            <div class="time-slice"></div>
+        </td>
+        <td class="time-section" ng-class="{selected: timeDimension.types.Relative.start=='2h'}" style="width:{{relativeTimeScale.2h}}%;" ng-click="setTimeWindow('2h')">
+            <div style="font-size:10px;">2h</div>
+            <div class="time-slice"></div>
+        </td>
+        <td class="time-section" ng-class="{selected: timeDimension.types.Relative.start=='1h'}" style="width:{{relativeTimeScale.1h}}%;" ng-click="setTimeWindow('1h')">
+            <div style="font-size:10px;">1h</div>
+            <div class="time-slice"></div>
+        </td>
+    </tr>
+</table>

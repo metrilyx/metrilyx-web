@@ -1,0 +1,72 @@
+<div class="input-group pod-header">
+    <div class="input-group-addon pod-handle">
+        <span class="glyphicon glyphicon-option-vertical" style="font-weight:bold"></span>
+    </div>
+    <input type="text" class="form-control" style="font-weight:bold;border:none;border-radius:0;background:none;box-shadow:none;" ng-model="pod.name">
+    <div class="input-group-btn">
+        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-cog"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li ng-switch="pod.orientation">
+                <a href="javascript:void(0)" ng-switch-when="horizontal" ng-click="pod.orientation='vertical'">
+                    <span class="glyphicon glyphicon-resize-vertical"></span><span style="padding-left:10px">Vertical Layout</span>
+                </a>
+                <a href="javascript:void(0)" ng-switch-default ng-click="pod.orientation='horizontal'">
+                    <span class="glyphicon glyphicon-resize-horizontal"></span><span style="padding-left:10px">Horizontal Layout</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" ng-click="addNewPanel()">
+                    <span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px">New Panel</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <span class="glyphicon glyphicon-copy"></span><span style="padding-left:10px">Copy Panels</span>
+                </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+                <a href="javascript:void(0)" ng-click="column.splice(column.indexOf(pod), 1);">
+                    <span class="glyphicon glyphicon-trash"></span><span style="padding-left:10px">Delete Pod
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--
+<div style="margin-bottom:10px">
+    <svg width="32" height="16" class="controls-arrow" style="position:absolute;right:15px;top:37px">
+        <polygon points="0,16 32,16 16,0"></polygon>
+    </svg>
+    <div class="pod-controls-content">
+        <div class="input-group input-group-sm" style="margin-bottom:10px">
+            <span class="input-group-addon" style="background:none"><b>Name</b></span>
+            <input type="text" class="form-control" ng-model="pod.name">
+        </div>
+        <div ng-switch="pod.orientation" class="row" style="margin:0">
+            <div class="col-md-4 text-left" style="padding:0">
+                <button class="circle-btn circle-btn-sm light" title="Delete pod" ng-click="column.splice(column.indexOf(pod), 1);">
+                    <div class="glyphicon glyphicon-trash" style="position:relative;left:-1px;"></div>
+                </button>
+            </div>
+            <div class="col-md-8 text-right" style="padding:0">
+                <button type="button" class="circle-btn circle-btn-sm light" ng-click="addNewPanel()" title="Add new panel">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button type="button" class="circle-btn circle-btn-sm light" title="Copy existing panel" data-toggle="collapse" data-target="[data-cp-id='pod{{$parent.$parent.$parent.$parent.$index}}-{{$parent.$parent.$parent.$index}}-{{$parent.$parent.$index}}']">
+                    <span class="glyphicon glyphicon-retweet"></span>
+                </button>
+                <button ng-switch-when="horizontal" ng-click="pod.orientation='vertical'" class="circle-btn circle-btn-sm light">
+                    <span class="glyphicon glyphicon-resize-vertical"></span>
+                </button>
+                <button ng-switch-default ng-click="pod.orientation='horizontal'" class="circle-btn circle-btn-sm light">
+                    <span class="glyphicon glyphicon-resize-horizontal"></span>
+                </button>
+            </div>
+        </div>
+        <copy-pane content-id="pod{{$parent.$parent.$parent.$parent.$index}}-{{$parent.$parent.$parent.$index}}-{{$parent.$parent.$index}}" copy-type="'panel'" label="'Panels'" copyable-list="pod.panels"></copy-pane>
+    </div>
+</div>
+-->

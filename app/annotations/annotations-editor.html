@@ -1,0 +1,43 @@
+<div class="side-panel-header" ng-class="activeSidePanel == 'eventannotations' ? 'active' : ''" title="Annotations">
+    <span class="glyphicon glyphicon-map-marker side-panel-btn" ng-click="setActiveSidePanel('eventannotations')"></span>
+    <svg height="20" width="10" class="side-panel-arrow" ng-class="activeSidePanel == 'eventannotations' ? 'active' : ''">
+        <polygon points="10,0 10,20 0,10" style="stroke:#444;fill:#444"></polygon>
+    </svg>
+</div>
+<div id="event-annotations" ng-if="activeSidePanel=='eventannotations'">
+    <div class="side-panel-content-header">Annotations</div>
+    <div style="padding-bottom:10px;padding-top:10px;padding-left:15px;font-size:13px;font-weight:bold;color:#888">
+        <span class="glyphicon glyphicon-tasks"></span><span style="padding-left:10px">Types</span>
+    </div>
+    <div title="Filter by type" style="padding-left:15px;">
+        <div ng-repeat="(annoTypeId, annoType) in eventAnnoTypes" ng-switch="annoType.selected" ng-click="annoType.selected=!annoType.selected" class="anno-type">
+            <span ng-switch-when="true" style="color: {{annoType.metadata.color}}" class="glyphicon glyphicon-adjust pull-right"></span>
+            <span ng-switch-default style="box-shadow: inset 2px 2px rgba(0,0,0,0.085);color: #aaa" class="glyphicon glyphicon-adjust pull-right"></span>
+            <span>{{annoType.name}}</span>
+        </div>
+    </div>
+    <div class="side-panel-divider"></div>
+    <div style="padding-left:15px;padding-top:10px;padding-bottom:10px;font-weight:bold;font-size:13px;color:#888;">
+        <span class="glyphicon glyphicon-tags"></span><span style="padding-left:10px">Tags</span>
+    </div>
+    <div style="padding-left:10px;padding-top:10px;">
+        <div class="input-group input-group-sm tag-key-value" ng-repeat="(ak, av) in annoFilter.tags" style="margin-bottom:3px;">
+            <span class="input-group-addon">{{ak}}</span>
+            <input type="text" class="form-control" ng-model="av">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-remove" ng-click="deleteAnnotationTag(ak)"></span>
+            </span>
+        </div>
+        <div class="input-group input-group-sm nobg" style="margin-top:10px;margin-bottom:5px;" title="Annotation tags">
+            <input type="text" class="form-control" style="border:none;border-bottom:1px solid #888;border-radius:0;color: #aaa" placeholder="host=node.dc.tld" ng-model="annoFilter.tags" tag-key-value>
+            <span class="input-group-addon" style="border:none">
+                <span class="glyphicon glyphicon-search" style="color: #aaa"></span>
+            </span>
+        </div>
+    </div>
+    <div style="text-align:right;padding-top:10px;">
+        <button class="btn btn-default btn-sm" ng-click="applyAnnotations()">
+            <span class="glyphicon glyphicon-ok"></span>
+        </button>
+    </div>
+</div>

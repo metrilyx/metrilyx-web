@@ -1,0 +1,8 @@
+<dashboard-header></dashboard-header>
+<div class="row" style="margin:0;padding-left:10px;padding-right:10px">
+    <div class="column col-md-12" ng-model="column" dashboard-column style="padding:0;">
+        <div ng-repeat="pod in column" class="pod">
+            <div metrilyx-pod pod="pod" column="column"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container" style="width:94%">
+    <div class="row" style="margin:0">
+        <div class="col-md-12" style="padding:0">
+            <h3>Dataproviders</h3>
+        </div>
+    </div>
+    <div class="row" style="margin:0">
+        <div class="col-md-12" style="padding:0">
+            <div>
+                <h4>Dashboards</h4>
+                <div class="input-group">
+                    <span class="input-group-addon">URL</span>
+                    <input type="text" class="form-control" ng-model="config.dataproviders.dashboards">
+                </div>
+            </div>
+            <div>
+                <h4>Schemas</h4>
+                <div class="input-group">
+                    <span class="input-group-addon">URL</span>
+                    <input type="text" class="form-control" ng-model="config.dataproviders.schemas">
+                </div>
+            </div>
+            <div>
+                <h4>Search</h4>
+                <ul style="margin-bottom:0;margin-left:15px;">
+                    <li>
+                        <h5>Metrics</h5>
+                        <div class="input-group">
+                            <span class="input-group-addon">URL</span>
+                            <input type="text" class="form-control" ng-model="config.dataproviders.search.metrics">
+                        </div>
+                    </li>
+                    <li>
+                        <h5>Dashboards</h5>
+                        <div class="input-group">
+                            <span class="input-group-addon">URL</span>
+                            <input type="text" class="form-control" ng-model="config.dataproviders.dashboards">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4>WebSocket</h4>
+                <div class="input-group">
+                    <span class="input-group-addon">URI</span>
+                    <input type="text" class="form-control" ng-model="config.dataproviders.websocket">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

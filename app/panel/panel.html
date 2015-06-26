@@ -1,0 +1,23 @@
+<div class="metrilyx-panel">
+    <div class="input-group input-group-sm nobg no-border graph-header">
+        <div class="input-group-addon panel-mv-handle">
+            <span class="glyphicon glyphicon-option-vertical"></span>
+        </div>
+        <input type="text" class="form-control" ng-model="graph.name">
+        <div class="input-group-addon" ng-click="refreshView()">
+            <span class="glyphicon glyphicon-refresh"></span>
+        </div>
+        <div class="input-group-addon">
+            <a href="#/{{dashboardId}}/{{rowIndex}}/{{columnIndex}}/{{podIndex}}/{{$parent.$index}}">
+                <span class="glyphicon glyphicon-link"></span>
+            </a>
+        </div>
+    </div>
+    <!--
+    <panel-controls panels="panels" graph="graph" visible="controlsVisible" selected-config="selectedConfig"></panel-controls>-->
+    <div class="graph-content {{graph.size}}" graph="graph" panel-content is-a-template="isATemplate()"></div>
+    <div class="graph-footer">
+        <span class="glyphicon glyphicon-cog" ng-click="controlsVisible=!controlsVisible;"></span><span style="padding-left:5px" class="small text-{{panelStatus.severity}}">{{panelStatus.status}}</span>
+    </div>
+</div>
+<panel-controls></panel-controls>

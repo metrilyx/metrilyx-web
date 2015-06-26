@@ -1,0 +1,189 @@
+<dashboard-header></dashboard-header>
+<div class="container layout" ui-sortable="layoutDragDropConfig" ng-model="dashboard.layout" dashboard-layout>
+    <div ng-repeat="row in dashboard.layout" class="row" ng-model="row" dashboard-row ui-sortable="rowDragDropConfig">
+        <div ng-repeat="column in row" class="column col-sm-{{row|columnWidth}}" ng-model="column" dashboard-column>
+            <div ng-repeat="pod in column" class="pod">
+                <div metrilyx-pod pod="pod" column="column" dashboard-id="dashboard._id" row-index="{{$parent.$parent.$index}}" column-index="{{$parent.$index}}" pod-index="{{$index}}" is-a-template="isATemplate()"></div>
+            </div>
+        </div>
+        <div class="row-handle">
+            <div style="cursor:move" class="row-ctrl-btn row-move-handle" title="Move row">
+                <span class="glyphicon glyphicon-move"></span>
+                <span>Move</span>
+            </div>
+            <div style="cursor:pointer" class="row-ctrl-btn" title="Add pod" ng-click="addNewPodToRow(row, false)">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span>Pod</span>
+            </div>
+            <!--
+            <span class="pod-copy-btn">
+                <div style="cursor:arrow" class="row-ctrl-btn">
+                    <span class="glyphicon glyphicon-retweet" style="padding-right:3px;"></span>
+                    <span>Pod</span>
+                </div>
+           
+                <div class="pod-copy-btn-content">
+                    <svg height="20" width="10" style="position:relative;top:20px;left:1px;z-index:1" class="controls-arrow">
+                        <polygon points="10,0 10,20 0,10" ></polygon>
+                    </svg>
+                    <div class="pod-copy-btn-content-body">
+                        <div style="font-size:12px;text-align:left;padding:0 5px">Copy pod from :</div>
+                        <div class="seperator dark" style="margin: 10px 0;"></div>
+                        <div ng-repeat="(podIdxKey, idxPod) in podIndex" class="ds-cp-list-item pod-cp-list" ng-click="copyPodToRow(idxPod, row)">
+                            <span class="glyphicon glyphicon-retweet" style="font-weight:bold;padding-right:5px"></span>
+                            <span>{{podIdxKey}}</span>
+                        </div>
+                    </div>
+                </div>
+            </span>
+            -->
+        </div>
+    </div>
+</div>
+<!-- END dashboard.layout -->
+<div style="position:absolute;bottom:0;left:50px;">
+    <button type="button" class="btn btn-default btn-sm nobg add-row-btn" ng-click="addNewRow();">
+        <span class="glyphicon glyphicon-plus"></span>
+        <span style="padding-left:5px;">Row</span>
+    </button>
+</div>
+<!--
+<div id="dashboard-graph-helper" class="dashboard-helper" style="left:250px;top:150px;" ng-class="{'active': helpersActive }">
+    <div class="dashboard-helper-content">
+        <a href="javascript:void(0)" onclick="$('#dashboard-graph-helper').hide();">
+            <span class="glyphicon glyphicon-remove pull-right" style="color:#eee"></span>
+        </a>
+        <div>View graph controls by <b>hovering</b> over the graph to edit metrics and graph settings.</div>
+    </div>
+    <svg height="10" width="20" style="position:relative;left:10px;">
+        <polygon points="0,0 20,0 10,10" style="fill:rgba(38,129,202,0.7)"></polygon>
+    </svg>
+</div>
+-->
+<copy-list></copy-list>
+
+<div id="dashboard-options" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title">Dashboard Options</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group" style="margin:3px 0">
+            <span class="input-group-addon" style="font-weight:bold">Name</span><input type="text" class="form-control" ng-model="dashboard.name" required>
+        </div>
+        <div class="input-group" style="margin:3px 0">
+            <span class="input-group-addon" style="font-weight:bold">ID</span><input type="text" class="form-control" ng-model="dashboard._id" required>
+        </div>
+        <div class="input-group" style="margin:3px 0">
+            <span class="input-group-addon" style="font-weight:bold">Tags</span><input type="text" class="form-control" ng-model="dashboard.tags" placeholder="e.g. tagA,tagB" dashboard-tags>
+        </div>
+        <div class="input-group" style="margin:3px 0">
+            <span class="input-group-addon" style="font-weight:bold">Links</span><input type="text" class="form-control" ng-model="dashboard.links" placeholder="e.g.">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!--
+        <a id="export-btn" href="{{apiURL}}/api/graphmaps/{{dashboard._id}}?export=true" target="_blank" download="{{dashboard._id}}.json" class="btn btn-success" title="Export/Download dashboard">
+            <div class="glyphicon glyphicon-cloud-download"></div>
+            <div style="font-size:10px">Export</div>
+        </a>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#save-confirm-bar">
+            <div class="glyphicon glyphicon-save"></div>
+            <div style="font-size:10px">Save</div>
+        </button>
+        -->
+        <button type="button" class="btn btn-primary" ng-click="saveDashboard()">
+            <div class="glyphicon glyphicon-save"></div>
+            <div style="font-size:10px">Save</div>
+        </button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal" title="Cancel">
+            <div class="glyphicon glyphicon-ban-circle"></div>
+            <div style="font-size:10px">Cancel</div>
+        </button>
+        <button type="button" class="btn btn-danger" title="Delete dashboard" data-toggle="modal" data-target="#delete-confirm-bar">
+            <div class="glyphicon glyphicon-trash"></div>
+            <div style="font-size:10px">Delete</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="save-confirm-bar" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Save {{dashboard.name}}</h4>
+            </div>
+            <div class="modal-body">Are you sure you want to save <b>{{dashboard.name}}</b>?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" title="Cancel">
+                    <div class="glyphicon glyphicon-ban-circle"></div>
+                    <div style="font-size:10px">Cancel</div>
+                </button>
+                <button type="button" class="btn btn-danger" title="Save dashboard" ng-click="saveDashboard()">
+                    <div class="glyphicon glyphicon-save"></div>
+                    <div style="font-size:10px">Save</div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="unsaved-confirm-bar" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Unsaved changes: <b>{{dashboard.name}}</b></h4>
+            </div>
+            <div class="modal-body">Changes will be lost.  Are you sure you want to leave?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" title="Cancel">
+                    <div class="glyphicon glyphicon-ban-circle"></div>
+                    <div style="font-size:10px">Cancel</div>
+                </button>
+                <button type="button" class="btn btn-success" title="Save dashboard" ng-click="saveDashboard()">
+                    <div class="glyphicon glyphicon-save"></div>
+                    <div style="font-size:10px">Save</div>
+                </button>
+                <button type="button" class="btn btn-danger" title="Leave without saving dashboard" ng-click="leaveWithoutSaving();">
+                    <div class="glyphicon glyphicon-save"></div>
+                    <div style="font-size:10px">Leave</div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="delete-confirm-bar" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Delete {{dashboard.name}}</h4>
+            </div>
+            <div class="modal-body">Are you sure you want to delete <b>{{dashboard.name}}</b>?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" title="Cancel">
+                    <div class="glyphicon glyphicon-ban-circle"></div>
+                    <div style="font-size:10px">Cancel</div>
+                </button>
+                <button type="button" class="btn btn-danger" title="Delete dashboard" ng-click="removeDashboard()">
+                    <div class="glyphicon glyphicon-trash"></div>
+                    <div style="font-size:10px">Delete</div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

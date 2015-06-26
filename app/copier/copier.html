@@ -1,0 +1,23 @@
+<div class="collapse" data-cp-id="{{contentId}}">
+    <div style="padding-left:30px;line-height:0.75">
+        <svg width="20" height="10" fill="#595959">
+            <polygon points="10,0 20,10 0,10"></polygon>
+        </svg>
+    </div>
+    <div style="padding:0 5px 10px 5px;border-radius:2px;background:#595959">
+        <div class="ds-cp-list" style="padding-bottom:5px;padding-left:10px;padding-right:10px;">
+            <div style="font-weight:bold;text-align:left;padding-bottom:5px;">Select {{label}}:</div>
+            <div style="padding:0 5px;">
+                <div ng-repeat="listItem in copyableList" class="ds-cp-list-item">
+                    <input type="checkbox" style="position:relative;top:1px" class="app-checkbox app-checkbox-sm" ng-model="selectedList[$index]"><span style="padding-left: 10px;" ng-click="selectedList[$index]=!selectedList[$index]">{{listItem|copyItemLabel}}</span>
+                </div>
+            </div>
+            <div class="text-right" style="padding-top:20px;">
+                <button class="btn btn-sm" style="background:none;border:1px solid #aaa" ng-click="copySelectedItems()">
+                    <span class="glyphicon glyphicon-copy"></span>
+                    <span>Copy</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

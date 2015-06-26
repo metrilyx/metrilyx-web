@@ -1,0 +1,38 @@
+<title>{{dashboard.name}}</title>
+<div id="dashboard-page-header">
+    <div class="row" style="padding-left:10px;padding-right:5px">
+        <div class="col-md-3" style="padding:0">
+            <div>
+                <h4 class="dash-title">
+                     <button type="button" class="dboard-edit-btn" title="Dashboard Options" data-toggle="modal" data-target="#dashboard-options">
+                        <span class="glyphicon glyphicon-cog" style="font-size:16px;position:relative;top:1px"></span>
+                    </button>
+                    <a href="#/{{dashboard._id}}">
+                        <span style="padding:0 10px;">{{dashboard.name}}</span>
+                    </a>
+                    <sub style="font-weight:normal;font-size:11px"> {{dashboard.tags|array2string}}</sub>
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <div ng-if="peeled" style="margin: 10px 0">{{dashboardMeta|formattedDashboardMeta}}</div>
+            <div class="input-group">
+                <input type="text" class="form-control" inline-global-tags>
+                <div class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></div>
+            </div>
+        </div>
+        <div class="col-md-3 text-right" style="padding:0">
+            <span ng-if="!peeled">
+                <dashboard-exporter></dashboard-exporter>
+                <!--<span>
+                    <button type="button" class="dboard-edit-btn" title="Options" data-toggle="modal" data-target="#dashboard-options">
+                        <span class="glyphicon glyphicon-cog" style="font-size:16px;position:relative;top:1px"></span>
+                    </button>
+                </span>-->
+            </span>
+            <div style="display:inline-block;padding:10px">
+                <span id="connection-status" class="glyphicon glyphicon-transfer {{connectionStatus}}"></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+
+		<link rel="stylesheet" type="text/css" href="libs/jquery/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="libs/datetimepicker/css/datetimepicker.css">
+
+		<script type="text/javascript" src="libs/datetimepicker/js/moment.min.js"></script>
+		<script type="text/javascript" src="libs/jquery/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="libs/jquery/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="libs/jquery/jquery.elastic.source.js"></script>
+		<script type="text/javascript" src="libs/highstock.js"></script>
+		<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+
+		<script type="text/javascript" src="libs/angularjs/angular.min.js"></script>
+		<script type="text/javascript" src="libs/angularjs/angular-route.min.js"></script>
+		<script type="text/javascript" src="libs/angularjs/angular-resource.min.js"></script>
+		<script type="text/javascript" src="libs/angularjs/angular-sortable.js"></script>
+		<script type="text/javascript" src="libs/datetimepicker/js/datetimepicker.js"></script>
+
+		<script type="text/javascript" src="app/graph/MetrilyxGraph.js"></script>
+
+		<script type="text/javascript" src="app/notifications/Notifications.js"></script>
+		<script type="text/javascript" src="app/autocomplete/Autocomplete.js"></script>
+		<script type="text/javascript" src="app/autoupdater/AutoUpdater.js"></script>
+
+		<script type="text/javascript" src="app/login/LoginController.js"></script>
+		<script type="text/javascript" src="app/login/LoginService.js"></script>
+
+		<script type="text/javascript" src="app/panel/Panel.js"></script>
+		<script type="text/javascript" src="app/pod/Pod.js"></script>
+
+		<script type="text/javascript" src="app/websock/WebsockFactories.js"></script>
+
+		<script type="text/javascript" src="app/sidepanel/SidePanel.js"></script>
+
+		<script type="text/javascript" src="app/timeselector/TimeSelector.js"></script>
+		<script type="text/javascript" src="app/annotations/Annotations.js"></script>
+		<script type="text/javascript" src="app/globaltags/GlobalTags.js"></script>
+
+		<script type="text/javascript" src="app/dash-header/DashHeader.js"></script>
+		<script type="text/javascript" src="app/dashboards/Dashboards.js"></script>
+
+		<script type="text/javascript" src="app/copier/Copier.js"></script>
+		<script type="text/javascript" src="app/exporter/Exporter.js"></script>
+
+		<script type="text/javascript" src="app/peeled/row/PeeledRowController.js"></script>
+		<script type="text/javascript" src="app/peeled/column/PeeledColumnController.js"></script>
+		<script type="text/javascript" src="app/peeled/pod/PeeledPodController.js"></script>
+		<script type="text/javascript" src="app/peeled/panel/PeeledPanelController.js"></script>
+		<script type="text/javascript" src="app/peeled/PeelingService.js"></script>
+
+		<script type="text/javascript" src="app/providers/Providers.js"></script>
+
+		<script type="text/javascript" src="app/app.js"></script>
+		<script type="text/javascript" src="directives.js"></script>
+		<script type="text/javascript" src="factories.js"></script>
+		<script type="text/javascript" src="controllers.js"></script>
+	</head>
+	<body id="body" ng-controller="defaultController" ng-class="{shrink: activeSidePanel!='none'}">
+		<div id="stage">
+			<div style="overflow-y:scroll">
+				<div id="side-panel" ng-controller="sidePanelController">
+				    <global-tags ng-if="globalTagsEnabled"></global-tags>
+				    <annotations-editor ng-if="annotationsEnabled"></annotations-editor>
+				    <dashboards-list set-active-side-panel="setActiveSidePanel('dashboards')" active-side-panel="activeSidePanel"></dashboards-list>
+				</div>
+				<time-selector id="top-panel" ng-controller="timeSelectorController" ng-if="timeselectorEnabled" style="margin-right:5px"></time-selector>
+				<div id="dashboard-container" ng-class="{shrink: activeSidePanel!='none'}" style="overflow-x:hidden;">
+					<div ng-view></div>
+				</div>
+				<notifications ng-controller="notificationsController"></notifications>
+			</div>
+		</div>
+	</body>
+</html>
