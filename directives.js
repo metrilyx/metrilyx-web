@@ -55,6 +55,42 @@ angular.module('appDirectives', [])
         }
     };
 }])
+.directive('inlineTags', ['GlobalTagsParser', function(GlobalTagsParser) {
+    return {
+        restrict: 'EA',
+        require: '?ngModel',
+        link: function(scope, elem, attrs, ctrl) {
+            if(!ctrl) return;
+
+            var model2view = function(modelVal) {
+                //console.log(modelVal);
+                var str = tags2String(modelVal, '=');
+                return str;
+            }
+
+            var view2model = function(viewVal) {
+                var tags = string2Tags(viewVal, '=');
+                if (tags.error) {
+                    ctrl.$setValidity('inlineTags', false);
+                    return ctrl.modelValue;
+                } else {
+                    ctrl.$setValidity('inlineTags', true);
+                    return tags;
+                }
+            }
+
+
+            var init = function() {
+                // model --> view
+                ctrl.$formatters.push(model2view);
+                // view --> model
+                ctrl.$parsers.unshift(view2model);
+            }   
+
+            init(); 
+        }
+    };
+}])
 .directive('tagKeyValue', [function() {
     return {
         restrict: 'A',
@@ -62,46 +98,26 @@ angular.module('appDirectives', [])
         link: function(scope, elem, attrs, ctrl) {
             if(!ctrl) return;
 
-            function tags2string(obj) {
-                var out = '';
-                for(var k in obj) {
-                    out += k+':'+obj[k]+',';
-                }
-                return out.replace(/\,$/, '');
-            }
-
             elem[0].addEventListener('keyup', function(evt) {
-                //if(evt.keyCode == 13) {
-                    //console.log(evt);
-                    //console.log(elem.val());
-                    
-                    //var kv = ctrl.$viewValue.split("=");
-                    var kv = elem.val().split("=");
-                    if(kv.length == 2) {
-                        if(kv[1] !== undefined && kv[1] !== ''){
-                            
-                            //var kvals = kv[1].split('|');
-                            //if (kvals.length > 1 && kvals[kvals.length-1] !== '') {
 
-                            //} else {
+                var kv = elem.val().split("=");
+                if(kv.length == 2) {
+                    if(kv[1] !== undefined && kv[1] !== '') {
 
-                            //}
-                            if ( kv[1][kv[1].length-1] == '|' ) {
-                                ctrl.$setValidity('tagkeyvalue', false);
-                                //scope.$apply(function() { ctrl.$modelValue[kv[0]] = kv[1]; });
-                            } else {
-                                ctrl.$setValidity('tagkeyvalue', true);    
-                                scope.$apply(function() { ctrl.$modelValue[kv[0]] = kv[1]; });
-                            }
-                            
-                            if( evt.keyCode == 13 ) elem.val('');
-                            //elem[0].value = '';
-                            //return;
+                        if ( kv[1][kv[1].length-1] == '|' ) {
+                            ctrl.$setValidity('tagkeyvalue', false);
+                        } else {
+                            ctrl.$setValidity('tagkeyvalue', true);    
+                            scope.$apply(function() { ctrl.$modelValue[kv[0]] = kv[1]; });
                         }
-                    } else {
-                        ctrl.$setValidity('tagkeyvalue', false);        
+                        
+                        if( evt.keyCode == 13 ) elem.val('');
+                        //elem[0].value = '';
+                        //return;
                     }
-                //}
+                } else {
+                    ctrl.$setValidity('tagkeyvalue', false);        
+                }
             });
 
             // model 2 view

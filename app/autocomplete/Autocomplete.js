@@ -17,10 +17,15 @@ angular.module('metrilyx.autocomplete', [])
             }
 
             var tagFocusFunc = function(event, ui) {
-                var kv = elem.val().split("=");
+                var tagkvs = elem.val().split(',');
+                var kv = tagkvs.splice(tagkvs.length-1, 1)[0].split('=');
+
                 if(kv.length == 1) {
                     
-                    elem.val(ui.item.value);
+                    if (tagkvs.length > 0)
+                        elem.val(tagkvs.join(',') + ',' + ui.item.value);
+                    else
+                        elem.val(ui.item.value);
                     return false;
                 
                 } else if(kv.length == 2) {
@@ -32,20 +37,25 @@ angular.module('metrilyx.autocomplete', [])
                     }
                     retstr += ui.item.value;
 
-                    scope.$apply(function() { scope.ngModel[kv[0]] = retstr; });
-                    elem.val(kv[0]+'='+retstr);
+                    //scope.$apply(function() { scope.ngModel[kv[0]] = retstr; });
+                    tagkvs.push(kv[0]+'='+retstr);
+                    elem.val(tagkvs.join(','));
 
                     event.preventDefault();
                 }
             }
 
             var tagSelectFunc = function( event, ui ) {
+                var tagkvs = elem.val().split(',');
+                var kv = tagkvs.splice(tagkvs.length-1, 1)[0].split('=');
 
-                var kv = elem.val().split("=");
                 if(kv.length == 1) {
+                    if (tagkvs.length > 0)
+                        elem.val(tagkvs.join(',') + ',' + ui.item.value+'=');
+                    else
+                        elem.val(ui.item.value+'=');
                     
-                    elem.val(ui.item.value+"=");
-                    return false;
+                    event.preventDefault();
                 
                 } else if(kv.length == 2) {
                     
@@ -57,8 +67,9 @@ angular.module('metrilyx.autocomplete', [])
                     retstr += ui.item.value;
 
                     scope.$apply(function() { scope.ngModel[kv[0]] = retstr; });    
-                    //console.log(scope.ngModel);
-                    elem.val(kv[0]+'='+retstr);
+
+                    //tagkvs.push(kv[0]+'='+retstr);
+                    //elem.val(tagkvs.join(','));
 
                     event.preventDefault();
                 }
@@ -77,7 +88,9 @@ angular.module('metrilyx.autocomplete', [])
                     break;
                 case "opentsdb:tags":
                     sourceFunc = function(request, response) {
-                        var tkv = request.term.split('=');
+                        var tagkvs = request.term.split(',');
+                        var tkv = tagkvs[tagkvs.length-1].split('=');
+                        //var tkv = request.term.split('=');
                         if (tkv.length == 1) {
                             //tagk
                             OpenTsdbSearch.suggest(scope.providerName, "tagk", tkv[0], function(rslt) {

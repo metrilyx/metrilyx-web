@@ -1,13 +1,15 @@
 <div class="input-group pod-header">
-    <div class="input-group-addon pod-handle">
-        <span class="glyphicon glyphicon-option-vertical" style="font-weight:bold"></span>
+    <div class="input-group-btn pod-handle">
+        <span class="btn btn-theme" style="cursor:move">
+            <span class="glyphicon glyphicon-option-vertical" style="font-weight:bold"></span>
+        </span>
     </div>
-    <input type="text" class="form-control" style="font-weight:bold;border:none;border-radius:0;background:none;box-shadow:none;" ng-model="pod.name">
+    <input type="text" class="form-control editable-header" ng-model="pod.name">
     <div class="input-group-btn">
-        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <button class="btn btn-theme dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-cog"></span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-right">
+        <ul class="dropdown-menu dropdown-menu-right" style="margin-top:0">
             <li ng-switch="pod.orientation">
                 <a href="javascript:void(0)" ng-switch-when="horizontal" ng-click="pod.orientation='vertical'">
                     <span class="glyphicon glyphicon-resize-vertical"></span><span style="padding-left:10px">Vertical Layout</span>

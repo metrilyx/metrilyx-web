@@ -29,6 +29,36 @@ angular.module('dashboard')
                 
                 _copies = [];
                 
+                for ( var i=0; i < scope.copyableList.length; i++ ) {
+                    if ( scope.copyableList[i].$selected &&  scope.copyableList[i].$selected == true) {
+                        _copies.push(angular.copy(scope.copyableList[i]));
+                    }
+                }
+
+                if ( scope.copyType == 'datasource' ) {
+                    for ( var i=0; i < _copies.length; i++ ) {
+                        _getNewId(i, _copies[i].type);
+                    }
+                } else {
+                        for ( var i=0; i < _copies.length; i++ ) {
+                        _getNewId(i);
+                    }
+                }
+
+
+                if ( _copies.length > 0 ) {
+                    $rootScope.$broadcast("copy:initiate", {type: scope.copyType, list: _copies});
+                } else {
+                    $rootScope.$broadcast('notification', 
+                        {title: 'Cannot copy', message: 'No items selected'});
+                }
+            }
+
+            /*
+            var copySelectedItems = function() {
+                
+                _copies = [];
+                
                 for ( var i=0; i < scope.selectedList.length; i++ ) {
                     if ( scope.selectedList[i] ) {
                         _copies.push(angular.copy(scope.copyableList[i]));
@@ -53,7 +83,7 @@ angular.module('dashboard')
                         {title: 'Cannot copy', message: 'No items selected'});
                 }
             }
-
+            */
             var initSelectedList = function() {
 
                 var selectedList = [];
@@ -65,7 +95,7 @@ angular.module('dashboard')
             }
 
             var init = function() {
-                initSelectedList();
+                //initSelectedList();
                 
                 scope.copySelectedItems = copySelectedItems;
             }
@@ -73,7 +103,16 @@ angular.module('dashboard')
             init();
         }
     };
-}])
+}])/*
+.directive('datasourceCopier', [function() {
+    return {
+        restrict: 'E',
+        scope: {},
+        link: function(scope, elem, attrs) {
+
+        }
+    };
+}])*/
 .directive('copyList', ['$rootScope', function($rootScope) {
     return {
         restrict: 'E',

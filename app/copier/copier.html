@@ -1,3 +1,4 @@
+<!--
 <div class="collapse" data-cp-id="{{contentId}}">
     <div style="padding-left:30px;line-height:0.75">
         <svg width="20" height="10" fill="#595959">
@@ -12,12 +13,15 @@
                     <input type="checkbox" style="position:relative;top:1px" class="app-checkbox app-checkbox-sm" ng-model="selectedList[$index]"><span style="padding-left: 10px;" ng-click="selectedList[$index]=!selectedList[$index]">{{listItem|copyItemLabel}}</span>
                 </div>
             </div>
-            <div class="text-right" style="padding-top:20px;">
-                <button class="btn btn-sm" style="background:none;border:1px solid #aaa" ng-click="copySelectedItems()">
+            <div class="text-center" style="padding-top:20px;">
+                <button class="btn btn-sm btn-theme" style="border:1px solid #505050" ng-click="copySelectedItems()">
                     <span class="glyphicon glyphicon-copy"></span>
                     <span>Copy</span>
                 </button>
             </div>
         </div>
     </div>
-</div>
+</div>-->
+<button class="btn btn-theme" ng-click="copySelectedItems()" title="Copy Datasource/s">
+    <span class="glyphicon glyphicon-duplicate"></span>
+</button>

@@ -28,7 +28,6 @@ angular.module('metrilyx.panel', [])
             var refreshView = function() {
                 $rootScope.$broadcast('panel:refresh:'+scope.graph.id, 
                                                 { id: scope.graph.id });
-
                 scope.panelStatus = {
                     status: 'Refreshing...',
                     severity: 'info'
@@ -37,6 +36,10 @@ angular.module('metrilyx.panel', [])
 
             var toggleVisibility = function() {
                 scope.controlsVisible = !scope.controlsVisible;
+            }
+
+            var onPanelStatusUpdate = function(e, d) {
+                scope.panelStatus = d;
             }
             
             var onCopyClick = function(evt) {
@@ -52,7 +55,7 @@ angular.module('metrilyx.panel', [])
                 
                 $rootScope.$broadcast("copy:complete", {});
             }
-
+            /*
             var onCopyHoverOver = function(evt) {
                 elem.addClass('copy-hover');
             }
@@ -60,15 +63,15 @@ angular.module('metrilyx.panel', [])
             var onCopyHoverOut = function(evt) {
                 elem.removeClass('copy-hover');
             }
-
+            */
             var onCopyInitiated = function(e, d) {
                 if ( d.type == 'datasource' ) {
                     _tmpCopy = d.list;
                     // to avoid registering the initial click
                     setTimeout(function() {
                         elem.click(onCopyClick);
-                        elem.mouseover(onCopyHoverOver);
-                        elem.mouseout(onCopyHoverOut);
+                        //elem.mouseover(onCopyHoverOver);
+                        //elem.mouseout(onCopyHoverOut);
                     }, 500);
                 
                 }
@@ -76,17 +79,21 @@ angular.module('metrilyx.panel', [])
 
             var onCopyComplete = function(e, d) {
                 elem.unbind('click', onCopyClick);
-                elem.unbind('mouseover', onCopyHoverOver);
-                elem.unbind('mouseout', onCopyHoverOut);
+                //elem.unbind('mouseover', onCopyHoverOver);
+                //elem.unbind('mouseout', onCopyHoverOut);
                 _tmpCopy = undefined;
             }
-
-            var onPanelStatusUpdate = function(e, d) {
-                scope.panelStatus = d;
-            }
             
+            var initDatasources = function() {
+                var datasources = scope.graph.datasources;
+                for(var i=0; i<datasources.length;i++) {
+                    datasources[i].$selected = false;
+                }
+            }
             var init = function() {
                 scope.selectedConfig = "datasources";
+                
+                initDatasources();
 
                 scope.controlsVisible = $routeParams.pageId == 'new' ? true:false;
                 

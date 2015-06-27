@@ -149,7 +149,7 @@ table.table[time-selector]>tbody>tr>td {
 	border: none;
 }
 table.table[time-selector]>tbody>tr>td:last-child {
-	padding-left: 5px;
+	padding-left: 10px;
 }
 #notification-panel {
 	position: fixed;
@@ -181,7 +181,7 @@ table.table[time-selector] .form-control,
 #side-panel {
 	position:fixed;
 	width: 300px;
-	top:0;
+	top: 0px;
 	left:0;
 	height: 100%;
 	overflow: hidden;
@@ -238,29 +238,48 @@ svg.side-panel-arrow.active {
 }
 #side-panel select.form-control,
 #side-panel .btn.btn-default {
-	background: none;
 	color: #aaa;
 }
-#side-panel .btn.btn-default {
-	border:none;
-}
-#side-panel .btn.btn-default:focus,
-#side-panel .btn.btn-default:active {
-	outline: none;
-}
+
 #side-panel select.form-control {
+	background: none;
 	border: 1px solid #888;
-}
-table.table[time-selector] .btn.btn-default:hover,
-#side-panel .btn.btn-default:hover {
-	color: #428bca;
-}
-#side-panel select.form-control {
 	transition: all 0.35s ease;
 }
 #side-panel select.form-control:hover {
 	border: 1px solid #428bca;
 }
+
+#autoupdate-ctrl {
+	cursor: default;
+	transition: all 0.35s ease;
+}
+
+span.btn.btn-theme,
+button.btn.btn-theme {
+	background: none;
+	box-shadow: none;
+	border: none;
+}
+
+span.btn.btn-theme:focus,
+span.btn.btn-theme:active,
+span.btn.btn-theme:hover,
+#autoupdate-ctrl:focus,
+#autoupdate-ctrl:active,
+#autoupdate-ctrl:hover,
+button.btn.btn-theme:focus,
+button.btn.btn-theme:active,
+button.btn.btn-theme:hover {
+	color: #428bca;
+}
+
+button.btn.btn-theme:focus,
+button.btn.btn-theme:active,
+button.btn.btn-theme:hover {
+	outline: none;
+}
+
 [ng-repeat="annoType in annotations.types"].input-group > .input-group-addon > span {
 	transition: all 0.35s ease;
 	opacity: 0;
@@ -372,11 +391,14 @@ select[ng-model="selectedTimeRange"]:focus {
 	left: 300px;
 	padding: 10px 10px 10px 0;
 	transition: all 0.35s ease;
+	/*z-index: 3;
+	background: #555;*/
 }
 
 #top-panel:hover {
-	z-index:1;
+	z-index:3;
 }
+
 
 #top-panel.shrink {
 	background-color: #454545;
@@ -405,8 +427,8 @@ select[ng-model="selectedTimeRange"]:focus {
 #dashboard-page-header {
 	padding-right: 10px;
 	padding-left: 10px;
-	padding-top: 16px;
-	padding-bottom: 16px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	color: #777;
 }
 #dashboard-page-header > .row {
@@ -433,45 +455,24 @@ select[ng-model="selectedTimeRange"]:focus {
 .rm-btn {
 	cursor: pointer;
 }
-
+/*
 .pod-config-btn {
 	cursor: pointer;
 	color: #428bca;
 }
-
-.pod-config-btn,
+*/
+/*.pod-config-btn,*/
 .panel-config-btn,
-.circle-btn,
 .rm-btn {
 	opacity: 0.5;
 }
 
-.circle-btn {
-	width:40px;
-	height:40px;
-	border-radius:40px;
-	background:none;
-	border:1px solid #555;
-	transition: all 0.3s ease;
-}
-.circle-btn:active,
-.circle-btn:focus {
-	outline: none;
-}
-
-.circle-btn:active,
-.circle-btn:focus,
-.pod-config-btn:hover,
+/*.pod-config-btn:hover,*/
 .panel-config-btn:hover,
-.rm-btn:hover,
-.circle-btn:hover {
+.rm-btn:hover {
 	opacity: 1;	
 }
 
-.circle-btn.light>.glyphicon,
-.circle-btn.light {
-	border-color: #eee;
-}
 
 .dboard-edit-btn {
 	background: none;
@@ -485,17 +486,6 @@ select[ng-model="selectedTimeRange"]:focus {
 	opacity: 1;
 	color: #428bca;
 }
-
-.circle-btn-sm {
-	width: 30px;
-	height: 30px;
-	border-radius: 30px;
-}
-.circle-btn-sm > .glyphicon {
-	line-height: 1.1;
-	font-size: 12px;
-}
-
 
 .btn.btn-default.dboard-border-btn,
 .btn.btn-default.add-row-btn {
@@ -583,14 +573,16 @@ select[ng-model="selectedTimeRange"]:focus {
 .pod-copy-btn-content {
 	display: none;
 	position:absolute;
-	/*min-width:200px;*/
 	left:35px;
 	top: 120px;
-	/*background-color: #666;*/
-	color: #ccc;
-	/*padding: 10px 10px 5px 10px;*/
 	z-index:4;
+	color: #ccc;
+	/*padding: 10px 10px 5px 10px;
+	background-color: #666;
+	min-width:200px;*/
 }
+
+/*
 .pod-copy-btn:hover > .pod-copy-btn-content {
 	display: block !important;
 }
@@ -604,7 +596,7 @@ select[ng-model="selectedTimeRange"]:focus {
 	border-radius:2px;
 	padding:10px 15px 10px 15px;
 }
-
+*/
 .pod {
 	/*border: 1px solid #c0c0c0;
 	border-radius: 2px;
@@ -693,15 +685,17 @@ select[ng-model="selectedTimeRange"]:focus {
 .pod-header.input-group .btn.btn-default,
 .pod-header.input-group > .input-group-addon,
 .pod-header.input-group > .form-control {
-	background: none;
+	/*background: none;
 	border: none;
+	box-shadow: none;*/
 	color: #777;
+	
 }
 .pod-header.input-group > .form-control {
-	box-shadow: none;
 	font-weight: bold;
 	border-radius: 0;
 }
+/*
 .pod-header.input-group .btn.btn-default:active,
 .pod-header.input-group .btn.btn-default:hover,
 .pod-header.input-group .btn.btn-default:focus {
@@ -709,7 +703,7 @@ select[ng-model="selectedTimeRange"]:focus {
 	box-shadow: none;
 	color: #428bca;
 }
-
+*/
 /*
 .pod-header.input-group > .form-control:active,
 .pod-header.input-group > .form-control:focus,
@@ -732,6 +726,7 @@ select[ng-model="selectedTimeRange"]:focus {
 
 
 */
+/*
 .pod-hdr-menu-item-label {
 	padding-left: 10px;
 }
@@ -742,6 +737,7 @@ select[ng-model="selectedTimeRange"]:focus {
 	padding-top:3px;
 	padding-bottom:3px;
 }
+*/
 /*
 .pod-content [ng-repeat="graph in pod.panels"],
 .pod-content [ng-repeat="graph in pod.graphs"] {
@@ -759,10 +755,6 @@ select[ng-model="selectedTimeRange"]:focus {
 	padding-right: 0;
 }
 
-/*
-.pod-content.vertical .metrilyx-panel:last-child {
-	border-top: none;
-}*/
 
 [data-graph-id].small,
 .graph-content.small {
@@ -788,7 +780,7 @@ select[ng-model="selectedTimeRange"]:focus {
 
 .graph-header {
 	text-align: center;
-	padding: 5px;
+	/*padding: 5px;*/
 	word-wrap:break-word;
 	word-break:break-all;
 	font-weight: bold;
@@ -1172,7 +1164,7 @@ a#export-btn {
 	color: #ce4844;
 }
 #connection-status.connected {
-	color: #3c763d;
+	color: #85FF5E;
 }
 #connection-status.connecting {
 	background: #E8E468;
@@ -1181,33 +1173,37 @@ a#export-btn {
 #exporter-dropdown {
 	display: none;
 	position: absolute;
-	text-align: left;
-	top: 42px;
-	z-index: 1;
-	right: 28px;
+	/*text-align: left;*/
+	top: 20px;
+	z-index: 3;
+	right: 0;
 }
 #exporter a.exporter-dropdown-menu-item,
 #exporter {
 	color: #ccc;
 }
+
+#exporter {
+	padding: 6px 0;
+	display: inline-block;
+}
+
 #exporter-dropdown:hover,
 #exporter:hover > #exporter-dropdown {
 	display: block;
 }
 #exporter-dropdown-menu {
-	text-align: left;
+	/*text-align: left;*/
 	padding: 5px 10px;
 	background: #666;
 	border-radius: 3px;
 	min-width: 100px;
 	z-index: 3;
 }
-#exporter-btn {
-	cursor: initial;
-}
+
 .exporter-dropdown-menu-item {
 	font-size: 12px;
-	cursor: pointer;
+	cursor: default;
 	text-align: left;
 }
 .exporter-dropdown-menu-item > div {
@@ -1224,6 +1220,37 @@ a#export-btn {
  *
  *
  */
+
+.form-control.editable-header {
+	transition: all 0.35s ease;
+	background: none;
+	border: none;
+	box-shadow: none;
+	padding-left: 0;
+}
+
+.form-control.editable-header:focus,
+.form-control.editable-header:active,
+.form-control.editable-header:hover {
+	box-shadow: inset 0 1px 1px rgba(150,150,150,0.1) !important;
+	padding-left: 10px!important;
+	border-radius: 3px!important;
+	border: 1px solid #eee !important;
+}
+
+
+global-tags .form-control.editable-header:hover,
+global-tags .form-control.editable-header:active,
+global-tags .form-control.editable-header:focus,
+.pod-header .form-control.editable-header:active,
+.pod-header .form-control.editable-header:focus,
+.pod-header .form-control.editable-header:hover {
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) !important;
+	border: 1px solid #ddd !important;
+}
+
+
+
 .list-group-item.default,
 pre.default {
 	background: none;
@@ -1254,12 +1281,14 @@ pre.default {
 .input-group-list>.input-group:last-child>.form-control {
 	border-radius: 0 0 2px 0;
 }
+.input-group-list>.input-group:last-child>.input-group-btn,
 .input-group-list>.input-group:last-child>.input-group-addon {
 	border-radius: 0 0 0 2px;
 }
 .input-group-list>.input-group:first-child>.form-control {
 	border-radius: 0 2px 0 0;
 }
+.input-group-list>.input-group:last-child>.input-group-btn,
 .input-group-list>.input-group:first-child>.input-group-addon {
 	border-radius: 2px 0 0 0;
 }
@@ -1279,15 +1308,15 @@ pre.default {
 	border-left: none;
 }
 
-.pod-controls-content .input-group>.form-control,
+/*.pod-controls-content .input-group>.form-control,
+.metrilyx-pod .pod-controls-content .input-group>.form-control,*/
 .panel-controls .input-group>.form-control,
-.metrilyx-pod .pod-controls-content .input-group>.form-control,
 .panel-controls .input-group>.form-control {
 	background: #555;
 }
 
-.panel-controls .input-group-list>.input-group:last-child>.form-control,
-.panel-controls .input-group-list>.input-group:last-child>.input-group-addon {
+panel-controls .input-group-list>.input-group:last-child>.form-control,
+panel-controls .input-group-list>.input-group:last-child>.input-group-addon {
 	border-bottom: 1px solid #777;
 }
 
@@ -1308,41 +1337,37 @@ pre.default {
 }
 
 
-panel-container.copy-hover>.metrilyx-panel{
-	border-color: #428bca;
-}
-
 .panel-controls {
 	overflow-y:visible;
 	padding:10px 0 0 0;
 	border-radius: 3px;
-}
+}/*
 .pod-controls-content {
 	padding:15px 10px 10px 10px;
 	border-radius:3px;
 }
-
+*/
 .controls-arrow {
 	fill: #666;
 }
 
-.panel-controls,
-.pod-controls-content {
+/*.pod-controls-content, */
+.panel-controls {
 	background: #666;
 	
 }
 
 /* controls font color */
-.pod-controls-content .input-group>.input-group-addon,
+/*.pod-controls-content .input-group>.input-group-addon,
 .pod-controls-content .input-group>.form-control,
+.pod-controls-content,*/
 .panel-controls .input-group>.input-group-addon,
 .panel-controls .input-group>.form-control,
-.panel-controls,
-.pod-controls-content {
+.panel-controls {
  	color: #ccc;
  }
 
-.pod-controls-content .input-group>.input-group-addon,
+/*.pod-controls-content .input-group>.input-group-addon,*/
 .panel-controls .input-group>.input-group-addon {
 	background: none;
 }
@@ -1361,17 +1386,20 @@ panel-container.copy-hover>.metrilyx-panel{
 .metrilyx-panel {
 	border-color: #ccc;
 }
-
-.pod-copy-btn-content-body,
+/*
 .metrilyx-pod .input-group>.input-group-addon,
 .metrilyx-pod .input-group>.form-control,
+.pod-copy-btn-content-body,*/
 .metrilyx-panel .input-group>.input-group-addon,
 .metrilyx-panel .input-group>.form-control,
+panel-controls .input-group>.input-group-addon,
+panel-controls .input-group>.form-control,
 .panel-config-item {
 	border-color: #777;
 }
+/*
 .pod-controls-content .input-group>.form-control:active,
-.pod-controls-content .input-group>.form-control:focus,
+.pod-controls-content .input-group>.form-control:focus,*/
 .panel-controls .input-group>.form-control:focus,
 .panel-controls .input-group>.form-control:active,
 .input-group.tag-key-value:hover > .form-control {

@@ -2,72 +2,48 @@ angular.module('globaltags', [])
 .factory("GlobalTagsParser", [ '$location', '$rootScope', '$routeParams',
     function($location, $rootScope, $routeParams) {
 
-        //var GlobalTagsParser = function(scope) {
-        //    var t = this;
+        var setGlobalTags = function(gtags) {
+            var urlparams = { globaltags: tags2String(gtags, ':') };
 
-            var setGlobalTags = function(gtags) {
-                var urlparams = { globaltags: tags2String(gtags) };
-
-                var tmp = $location.search();
-                if(urlparams.globaltags !== '') {
-                    $.extend(true, tmp, urlparams, true);
-                } else {
-                    delete tmp.globaltags;
-                }
-                $location.search(tmp);
+            var tmp = $location.search();
+            //console.log(tmp);
+            if(urlparams.globaltags !== '') {
+                $.extend(true, tmp, urlparams, true);
+            } else {
+                delete tmp.globaltags;
             }
+            //console.log(tmp);
+            $location.search(tmp);
+        }
 
-            var getGlobalTags = function() {
-                if($routeParams.globaltags) return string2Tags($routeParams.globaltags);
-                return {};
-            }
-            /*
-            function init() {
-                console.log('GlobalTagsParser:init');
+        var getGlobalTags = function() {
+            if($routeParams.globaltags) return string2Tags($routeParams.globaltags, ':');
+            return {};
+        }
 
-                //t.applyGlobalTags = applyGlobalTags;
-
-                scope.$on('$routeChangeSuccess', function() {
-                    scope.globalTags = parseGlobalTags();
-                });
-            }
-
-            init();
-            */
-            return {
-                getGlobalTags: getGlobalTags,
-                setGlobalTags: setGlobalTags
-            };
-        //}
-        //return (GlobalTagsParser);
+        return {
+            getGlobalTags: getGlobalTags,
+            setGlobalTags: setGlobalTags
+        };
     }
 ])
-.directive('inlineGlobalTags', [function() {
+.directive('onEnterApply', [function() {
+    /* 
+     * Apply global tags when user presses enter and the data is valid 
+     */
     return {
         restrict: 'A',
         require: '?ngModel',
         link: function(scope, elem, attrs, ctrl) {
-            if(!ctrl) return;
-            console.log(ctrl.modelValue);
+            if (!ctrl) return;
 
-            var model2view = function(modelVal) {
-                console.log(modelVal);
-                return tags2String(modelVal, '=');
-            }
-
-            var view2model = function(viewVal) {
-                return string2Tags(viewVal, '=');
-            }
-
-
-            var init = function() {
-                // model --> view
-                ctrl.$formatters.push(model2view);
-                // view --> model
-                //ctrl.$parsers.unshift(view2model);
-            }   
-
-            init(); 
+            elem[0].addEventListener('keyup', function(e) {
+                if (e.keyCode == 13 && ctrl.$valid) {
+                    console.log('apply');
+                    console.log(scope);
+                    scope.$apply(function() { scope.applyGlobalTags(); });
+                }
+            });
         }
     };
 }])
@@ -77,12 +53,11 @@ angular.module('globaltags', [])
             restrict: 'E',
             templateUrl: 'app/globaltags/global-tags.html',
             link: function(scope, elem, attrs, ctrl) {
-                
-                //var globalTagsParser;
 
                 scope.globalTags = {};
                 
                 scope.applyGlobalTags = function() {
+                    //console.log('tags', scope.globalTags);
                     GlobalTagsParser.setGlobalTags(scope.globalTags);
                 }
 
@@ -92,11 +67,10 @@ angular.module('globaltags', [])
                 }
 
                 var init = function() {
-                    //globalTagsParser = new GlobalTagsParser(scope);
-                    //console.log(scope.globalTags);
-                    scope.$on('$routeChangeSuccess', function() {
-                        scope.globalTags = GlobalTagsParser.getGlobalTags();
-                    });
+                    //scope.$on('$routeChangeSuccess', function() {
+                    //    scope.globalTags = GlobalTagsParser.getGlobalTags();
+                    //});
+                    scope.globalTags = GlobalTagsParser.getGlobalTags();
                 }
 
                 init();

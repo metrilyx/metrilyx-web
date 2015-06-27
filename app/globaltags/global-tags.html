@@ -1,30 +1,12 @@
-<div class="side-panel-header" ng-class="activeSidePanel == 'globaltags' ? 'active' : ''" title="Global tags">
-    <span ng-click="setActiveSidePanel('globaltags')" class="glyphicon glyphicon-tags side-panel-btn"></span>
-    <svg height="20" width="10" class="side-panel-arrow" ng-class="activeSidePanel == 'globaltags' ? 'active' : ''">
-        <polygon points="10,0 10,20 0,10"></polygon>
-    </svg>
-</div>
-<div id="global-tags" ng-if="activeSidePanel=='globaltags'">
-    <div class="side-panel-content-header">Global tags</div>
-    <div style="margin-left:10px;">
-        <div style="padding-top:5px">
-            <div class="input-group input-group-sm tag-key-value" ng-repeat="(gTagK, gTagV) in globalTags" style="margin-bottom:3px;">
-                <span class="input-group-addon">{{gTagK}}</span>
-                <input type="text" class="form-control" ng-model="globalTags[gTagK]">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-remove" ng-click="deleteGlobalTag(gTagK)"></span>
-                </span>
-            </div>
-        </div>
-        <div class="input-group input-group-sm nobg" style="margin-bottom:10px;margin-top:20px;" title="Global tags search">
-            <input type="text" class="form-control" style="border:none;border-bottom:1px solid #888;border-radius:0;color: #aaa" placeholder="host=node.dc.tld" ng-model="globalTags" tag-key-value search-type="'opentsdb:tags'" autocomplete>
-            <span class="input-group-addon" style="border:none">
-                <span class="glyphicon glyphicon-search" style="color: #aaa"></span>
-            </span>
-        </div>
+<div class="input-group" style="margin:6px 0">
+    <div class="input-group-btn">
+        <button class="btn btn-theme">
+            <span class="glyphicon glyphicon-resize-small"></span>
+        </button>
     </div>
-    <div style="padding-top:10px;text-align:center">
-        <button class="circle-btn circle-btn-sm light" type="button" ng-click="applyGlobalTags()">
+    <input type="text" placeholder="Global Tags" class="form-control text-center editable-header" autocomplete search-type="'opentsdb:tags'" provider-name="'opentsdb.prod'" inline-tags ng-model="globalTags" on-enter-apply>
+    <div class="input-group-btn">
+        <button class="btn btn-theme" type="button" ng-click="applyGlobalTags()">
             <span class="glyphicon glyphicon-ok"></span>
         </button>
     </div>

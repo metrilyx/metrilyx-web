@@ -1,25 +1,25 @@
 <table class="table" style="margin-bottom:0px;border:none;" time-selector ng-switch="timeDimension.activeType">
     <tr ng-switch-when="Absolute">
-        <td style="width:30px">
-            <button type="button" class="btn btn-default btn-sm" ng-click="timeDimension.activeType = 'Relative'" style="font-weight:bold">
-                <span class="glyphicon glyphicon-time" title="Change to relative time"></span>
-            </button>
-        </td>
         <td>
             <time-range-selector></time-range-selector>
         </td>
+        <td style="width:30px;">
+            <button type="button" class="btn btn-theme" ng-click="timeDimension.activeType = 'Relative'" style="font-weight:bold">
+                <span class="glyphicon glyphicon-time" title="Change to relative time"></span>
+            </button>
+        </td>
     </tr>
     <tr ng-switch-default>
-        <td style="width:30px">
-            <button type="button" class="btn btn-default btn-sm" ng-click="timeDimension.activeType = 'Absolute'" style="font-weight:bold">
-                <span class="glyphicon glyphicon-calendar" title="Change to custom range"></span>
-            </button>
+        <td style="width:150px;vertical-align:middle;">
+            <auto-updater></auto-updater>
         </td>
         <td>
             <relative-time-selector></relative-time-selector>
         </td>
-        <td style="width:146px;vertical-align:middle;text-align:right">
-            <auto-updater></auto-updater>
+        <td style="width:30px;">
+            <button type="button" class="btn btn-theme" ng-click="timeDimension.activeType = 'Absolute'" style="font-weight:bold">
+                <span class="glyphicon glyphicon-calendar" title="Change to custom range"></span>
+            </button>
         </td>
     </tr>
 </table>

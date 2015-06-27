@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="panel-controls-footer">
-                <button class="circle-btn circle-btn-sm light" ng-click="panels.splice(panels.indexOf(graph),1)">
+                <button class="btn btn-theme" ng-click="panels.splice(panels.indexOf(graph),1)">
                     <span class="glyphicon glyphicon-trash" style="position:relative;left:-1px"></span>
                 </button>
             </div>
@@ -76,7 +76,10 @@
                             <span class="glyphicon glyphicon-option-vertical ds-mv-handle"></span>
                         </td>
                         <td class="text-left" style="word-wrap:break-word;word-break:break-all;padding:5px 0;cursor:pointer" data-toggle="collapse" data-target="[data-ds-id='{{graph.id}}-{{$index}}']" style="cursor:pointer;">{{datasource|datasourceLabel}}</td>
-                        <td class="text-right" style="padding:0px 10px;border-radius:0 3px 0 0">
+                        <td style="width:30px">
+                            <input type="checkbox" style="margin:0 10px" ng-model="datasource.$selected">
+                        </td>
+                        <td class="text-right" style="padding:0px 10px;width:30px">
                             <span class="glyphicon glyphicon-remove rm-btn" ng-click="graph.datasources.splice(graph.datasources.indexOf(datasource),1)" style="position:relative;top:2px"></span>
                         </td>
                     </tr></table>
@@ -135,18 +138,20 @@
             </div>
             <div class="panel-controls-footer">
                 <div>
-                    <button class="circle-btn circle-btn-sm light" ng-click="addNewDatasource()">
+                    <button class="btn btn-theme" ng-click="addNewDatasource()">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                     <span style="padding:5px"></span>
-                    <button class="circle-btn circle-btn-sm light" data-toggle="collapse" data-target="[data-cp-id={{graph.id}}]">
+                    <!--<button class="btn btn-theme" data-toggle="collapse" data-target="[data-cp-id={{graph.id}}]">
                         <span class="glyphicon glyphicon-retweet"></span>
                     </button>
+                    -->
+                    <copy-pane content-id="{{graph.id}}" label="'Datasources'" copyable-list="graph.datasources" copy-type="'datasource'"></copy-pane>
                 </div>
                 <!--
                 <copy-pane content-id="{{graph.id}}" index-slice="datasourceIndex" copy-func="copyDatasourceToPanel(cp, parentComp)" parent-component="graph"></copy-pane>
                 -->
-                <copy-pane content-id="{{graph.id}}" label="'Datasources'" copyable-list="graph.datasources" copy-type="'datasource'"></copy-pane>
+                <!--<copy-pane content-id="{{graph.id}}" label="'Datasources'" copyable-list="graph.datasources" copy-type="'datasource'"></copy-pane>-->
             </div>
         </div>
         <div ng-if="selectedConfig=='secondaries'" class="panel-config-item-content">
@@ -179,11 +184,11 @@
                 </div>
             </div>
             <div class="panel-controls-footer">
-                <button class="circle-btn circle-btn-sm light" style="position:relative;left:1px;" ng-click="addNewSecondary()">
+                <button class="btn btn-theme" ng-click="addNewSecondary()">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
                 <span style="padding:5px"></span>
-                <button class="circle-btn circle-btn-sm light">
+                <button class="btn btn-theme">
                     <span class="glyphicon glyphicon-retweet"></span>
                 </button>
             </div>

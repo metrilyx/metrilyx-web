@@ -65,16 +65,20 @@
 		<div id="stage">
 			<div style="overflow-y:scroll">
 				<div id="side-panel" ng-controller="sidePanelController">
-				    <global-tags ng-if="globalTagsEnabled"></global-tags>
 				    <annotations-editor ng-if="annotationsEnabled"></annotations-editor>
 				    <dashboards-list set-active-side-panel="setActiveSidePanel('dashboards')" active-side-panel="activeSidePanel"></dashboards-list>
 				</div>
-				<time-selector id="top-panel" ng-controller="timeSelectorController" ng-if="timeselectorEnabled" style="margin-right:5px"></time-selector>
+				<div id="top-panel">
+					<time-selector ng-controller="timeSelectorController" ng-if="timeselectorEnabled"></time-selector>
+				</div>
 				<div id="dashboard-container" ng-class="{shrink: activeSidePanel!='none'}" style="overflow-x:hidden;">
 					<div ng-view></div>
 				</div>
 				<notifications ng-controller="notificationsController"></notifications>
 			</div>
+			<div style="display:inline-block;padding:10px;position:fixed;bottom:0;left:0;" title="{{connectionStatus}}">
+                <span id="connection-status" class="glyphicon glyphicon-transfer {{connectionStatus}} side-panel-btn"></span>
+            </div>
 		</div>
 	</body>
 </html>

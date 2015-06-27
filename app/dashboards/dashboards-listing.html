@@ -49,6 +49,9 @@
             <div class="dashboard-list-item">
                 <span class="glyphicon glyphicon-stats" style="color:#696969"></span>
                 <span class="dashboard-list-item-label">{{dashboardPage.name}}</span>
+                <span>
+                    <span ng-repeat="tag in dashboardPage.tags" class="badge" style="font-weight:normal;margin:0 2px;font-size:11px;color:#d0d0d0">{{tag}}</span>
+                </span>
             </div>
         </a>
     </div>
