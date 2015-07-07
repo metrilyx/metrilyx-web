@@ -1,6 +1,6 @@
-<div ng-if="controlsVisible" style="margin-top:4px;margin-bottom:4px;">
+<div ng-if="controlsVisible">
     <div class="panel-controls">
-        <svg width="16" height="8" class="controls-arrow" style="position:absolute;top:-8px;left:3px">
+        <svg width="16" height="8" style="position:relative;top:-22px;left:2px;fill:#666">
             <polygon points="0,8 16,8 8,0"></polygon>
         </svg>
         <div style="margin:0 20px 15px 20px;padding-top:5px;text-align:center">
@@ -69,71 +69,35 @@
         </div>
         <div ng-if="selectedConfig=='datasources'" class="panel-config-item-content">
             <div class="datasource-list" ui-sortable="dsDragDropConfig" ng-model="graph.datasources">
-                <div class="seperator dark" style="margin:5px 0"></div>
-                <div ng-repeat="datasource in graph.datasources" class="datasource-list-item">
-                    <table style="width:100%"><tr style="font-size:13px;background:#">
-                        <td class="text-left" style="padding:5px 10px;width:35px;border-radius:3px 0 0 0">
+                <!--<div class="seperator dark" style="margin:5px 0"></div>-->
+                <div ng-repeat="datasource in graph.datasources" class="datasource-list-item" style="background:#777;">
+                    <table style="width:100%;"><tr style="font-size:14px;">
+                        <td class="text-left" style="padding:10px;width:35px;border-radius:3px 0 0 0">
                             <span class="glyphicon glyphicon-option-vertical ds-mv-handle"></span>
                         </td>
-                        <td class="text-left" style="word-wrap:break-word;word-break:break-all;padding:5px 0;cursor:pointer" data-toggle="collapse" data-target="[data-ds-id='{{graph.id}}-{{$index}}']" style="cursor:pointer;">{{datasource|datasourceLabel}}</td>
+                        <td class="text-left" style="word-wrap:break-word;word-break:break-all;padding:10px 0;cursor:pointer;font-weight:bold" data-toggle="collapse" data-target="[data-ds-id='{{graph.id}}-{{$index}}']" style="cursor:pointer;">{{datasource|datasourceLabel}}</td>
                         <td style="width:30px">
                             <input type="checkbox" style="margin:0 10px" ng-model="datasource.$selected">
                         </td>
-                        <td class="text-right" style="padding:0px 10px;width:30px">
+                        <td class="text-right" style="padding:10px;width:30px">
                             <span class="glyphicon glyphicon-remove rm-btn" ng-click="graph.datasources.splice(graph.datasources.indexOf(datasource),1)" style="position:relative;top:2px"></span>
                         </td>
                     </tr></table>
-                    <!--
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-option-vertical ds-mv-handle"></span>
-                        </span>
-                        <select class="form-control app-select" ng-options="aggr for aggr in ['sum', 'min', 'max', 'avg']" ng-model="datasource.provider.query.aggregator"></select>
-                        <span class="input-group-addon" style="border-left:none;border-right:none" title="Rate">
-                            <input type="checkbox" ng-model="datasource.provider.query.rate">
-                        </span>
-                        <input type="text" class="form-control" ng-model="datasource.provider.query.metric">
-                        <span class="input-group-addon" style="border-left:none;border-right:none">{</span>
-                        <input type="text" class="form-control" ng-model="datasource.provider.query.tags" autocomplete search-type="'opentsdb:tags'" provider-name="datasource.provider.name" inline-tags>
-                        <span class="input-group-addon" style="border-left:none;">}</span>
-                        <span class="input-group-addon" style="border-left:none" data-toggle="collapse" data-target="[data-ds-id='{{graph.id}}-{{$index}}']">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </span>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-remove rm-btn" ng-click="graph.datasources.splice(graph.datasources.indexOf(datasource),1)" style="position:relative;top:2px"></span>
-                        </span>
-                    </div>-->
-                    <!--
-                    <div data-toggle="collapse" data-target="[data-ds-id='{{graph.id}}-{{$index}}']" style="cursor:pointer;">
-                        <div class="row datasource-list-item-hdr" style="margin:0;">
-                            <div class="col-md-8" style="padding:0">
-                                <div style="word-wrap:break-work;word-break:break-all;font-weight:bold">
-                                    <span class="glyphicon glyphicon-option-vertical ds-mv-handle"></span><span style="padding:0 10px;">{{datasource|datasourceLabel}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-right" style="padding:0">
-                                <span class="glyphicon glyphicon-remove rm-btn" ng-click="graph.datasources.splice(graph.datasources.indexOf(datasource),1)"></span>
-                            </div>
-                        </div>
-                    </div>--><!--border:1px solid #888;border-top:none;border-radius:0 0 3px 3px-->
                     <div class="collapse" data-ds-id="{{graph.id}}-{{$index}}">
-                        <div style="padding:10px;">
+                        <div style="padding:10px;border-top:1px solid #666">
                             <div datasource="datasource" datasource-provider></div>
-                            <div class="seperator dark" style="margin:10px 0"></div>
-                            <ul style="margin-bottom:0;padding-left:0" class="input-group-list">
-                                
-                                <li class="input-group input-group-sm">
-                                    <span class="input-group-addon">Alias</span>
-                                    <textarea ng-model="datasource.alias" class="form-control code-block" autosize-to-content>{{datasource.alias}}</textarea>
-                                </li>
-                                <li class="input-group input-group-sm">
-                                    <span class="input-group-addon">Transform</span>
-                                    <textarea ng-model="datasource.transform" class="form-control code-block" autosize-to-content>{{datasource.transform}}</textarea>
-                                </li>
-                            </ul>
+                            <div style="margin:5px"></div>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">Alias</span>
+                                <textarea ng-model="datasource.alias" class="form-control code-block" autosize-to-content>{{datasource.alias}}</textarea>
+                            </div>
+                            <div style="margin:5px"></div>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">Transform</span>
+                                <textarea ng-model="datasource.transform" class="form-control code-block" autosize-to-content>{{datasource.transform}}</textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="seperator dark" style="margin:5px 0 0 0"></div>
                 </div>
             </div>
             <div class="panel-controls-footer">

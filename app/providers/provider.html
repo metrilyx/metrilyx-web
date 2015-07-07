@@ -2,7 +2,7 @@
     <span class="input-group-addon" style="font-weight:bold;">Provider</span>
     <select ng-model="datasource.provider.name" class="form-control app-select" style="border-radius:0" ng-options="provider.name as provider.name for provider in providerTypes" title="{{datasource.provider.url}}"></select>
 </div>
-<div class="seperator dark" style="margin:10px 0"></div>
+<div style="margin:5px"></div>
 <ul ng-switch="datasource.type" style="padding:0;margin:0">
     <li ng-switch-when="opentsdb">
         <opentsdb-provider-query query="datasource.provider.query" provider-name="datasource.provider.name"></opentsdb-provider-query>

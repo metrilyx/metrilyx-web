@@ -335,6 +335,7 @@ button.btn.btn-theme:hover {
 	position: absolute;
 	top:0;
 	left: 50px;
+	right: 0px;
 	height: 100%;
 	/*padding-left: 15px;*/
 	padding-right: 5px;
@@ -663,10 +664,6 @@ select[ng-model="selectedTimeRange"]:focus {
 	padding: 0 10px;
 }
 
-.secondaries-list,
-.datasource-list {
-	padding: 0 20px;
-}
 .secondaries-list>.secondaries-list-item:first-child {
 	/*border-top: none;*/
 	padding-top: 0;
@@ -676,10 +673,10 @@ select[ng-model="selectedTimeRange"]:focus {
 }
 
 .datasource-list-item {
-	margin-bottom: 10px;
+	border-bottom: 1px solid #606060;
 }
-.datasource-list .datasource-list-item:last-child {
-	margin-bottom: 0px;
+.datasource-list .datasource-list-item:first-child {
+	border-top: 1px solid #606060;
 }
 
 .pod-header.input-group .btn.btn-default,
@@ -1314,12 +1311,17 @@ pre.default {
 .panel-controls .input-group>.form-control {
 	background: #555;
 }
+/*
+panel-controls .input-group-list>.input-group>.form-control,
+panel-controls .input-group-list>.input-group>.input-group-addon {
+	border-color: #666
+}
 
 panel-controls .input-group-list>.input-group:last-child>.form-control,
 panel-controls .input-group-list>.input-group:last-child>.input-group-addon {
-	border-bottom: 1px solid #777;
+	border-bottom: 1px solid #666;
 }
-
+*/
 .panel-controls textarea {
 	resize: vertical;
 }
@@ -1340,8 +1342,9 @@ panel-controls .input-group-list>.input-group:last-child>.input-group-addon {
 .panel-controls {
 	overflow-y:visible;
 	padding:10px 0 0 0;
-	border-radius: 3px;
-}/*
+	/*border-radius: 3px;*/
+}
+/*
 .pod-controls-content {
 	padding:15px 10px 10px 10px;
 	border-radius:3px;

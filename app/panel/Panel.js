@@ -122,7 +122,7 @@ angular.module('metrilyx.panel', [])
                 var dsDragDropConfig = {
                     cursor: 'move',
                     connectWith: '.datasource-list',
-                    handle: '.ds-mv-handle'
+                    handle: '.ds-mv-handle',
                 };
 
                 var onAddNewDatasourceComplete = function(newobj) {

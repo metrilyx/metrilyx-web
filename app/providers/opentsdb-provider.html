@@ -1,21 +1,19 @@
 <div>
-    <div class="input-group-list">
-        <div class="input-group input-group-sm">
-            <div class="input-group-addon">Aggregator</div>
-            <select class="form-control app-select" ng-model="query.aggregator" ng-options="aggr for aggr in aggregators">
-            </select>
-            <!--<input type="text" class="form-control" ng-model="query.aggregator">-->
-            <div class="input-group-addon">
-                <span style="padding-right:10px">Rate</span>
-                <input type="checkbox" ng-model="query.rate" >
-            </div>
-        </div>
-        <div class="input-group input-group-sm">
-            <div class="input-group-addon">Metric</div>
-            <input type="text" class="form-control" ng-model="query.metric" provider-name="providerName" autocomplete search-type="'opentsdb:metrics'">
+    <div class="input-group input-group-sm">
+        <div class="input-group-addon">Aggregator</div>
+        <select class="form-control app-select" ng-model="query.aggregator" ng-options="aggr for aggr in aggregators">
+        </select>
+        <!--<input type="text" class="form-control" ng-model="query.aggregator">-->
+        <div class="input-group-addon">
+            <span style="padding-right:10px">Rate</span>
+            <input type="checkbox" ng-model="query.rate" >
         </div>
     </div>
-
+    <div style="margin:5px"></div>
+    <div class="input-group input-group-sm">
+        <div class="input-group-addon">Metric</div>
+        <input type="text" class="form-control" ng-model="query.metric" provider-name="providerName" autocomplete search-type="'opentsdb:metrics'">
+    </div>
     <div style="margin:3px"></div>
     <div style="padding: 0 0 0 10px;font-size:12px;">
         <div style="height:30px;display:table">
