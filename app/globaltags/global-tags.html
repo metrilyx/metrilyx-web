@@ -1,10 +1,8 @@
 <div class="input-group" style="margin:6px 0">
-    <div class="input-group-btn">
-        <button class="btn btn-theme">
-            <span class="glyphicon glyphicon-resize-small"></span>
-        </button>
+    <div class="input-group-addon" style="background:none;border:none;padding:6px 20px">
+        <span class="glyphicon glyphicon-search"></span>
     </div>
-    <input type="text" placeholder="Global Tags" class="form-control text-center editable-header" autocomplete search-type="'opentsdb:tags'" provider-name="'opentsdb.prod'" inline-tags ng-model="globalTags" on-enter-apply>
+    <input type="text" placeholder="Global Tags" class="form-control editable-header" autocomplete search-type="'opentsdb:tags'" provider-name="'opentsdb.prod'" inline-tags ng-model="globalTags" on-enter-apply>
     <div class="input-group-btn">
         <button class="btn btn-theme" type="button" ng-click="applyGlobalTags()">
             <span class="glyphicon glyphicon-ok"></span>

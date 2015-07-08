@@ -1,6 +1,22 @@
-<table style="width:100%;">
+<div class="dropdown" style="display:inline-block;">
+    <div class="dropdown-toggle" data-toggle="dropdown">
+        <div style="border-left: 1px solid #ccc">
+            <button class="btn btn-theme btn-sm" style="padding:13px;border-left:1px solid #fff;border-radius:0">
+                <span class="glyphicon glyphicon-time" style="position:relative;top:2px"></span>
+                <span style="padding: 0 5px;">{{timeDimension.types.Relative.start}}-ago</span><span class="caret"></span>
+            </button>
+        </div>
+    </div><!-- style="min-width:136px;margin-top:14px;"-->
+    <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="trange in ['1h','2h','3h','6h','12h', '24h']" ng-class="{active: timeDimension.types.Relative.start == trange}">
+            <a href="javacript:void(0)" ng-click="setTimeWindow(trange)">{{trange}}-ago</a>
+        </li>
+    </ul>
+</div>
+<!--<td style="height:10px;border:1px solid #ccc;width:{{relativeTimeScale.1w}}%"></td>-->
+<!--<table style="width:100%;">
     <tr>
-        <!--<td style="height:10px;border:1px solid #ccc;width:{{relativeTimeScale.1w}}%"></td>-->
+        
         <td class="time-section" ng-click="setTimeWindow('1d')" ng-class="{selected: timeDimension.types.Relative.start=='1d'}" style="width:{{relativeTimeScale.1d}}%;">
             <div style="font-size:10px;">1d</div>
             <div class="time-slice"></div>
@@ -26,4 +42,4 @@
             <div class="time-slice"></div>
         </td>
     </tr>
-</table>
+</table>-->

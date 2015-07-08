@@ -103,9 +103,13 @@ PanelType.prototype.isChart = function(v) {
     return !( this.isList(v) || this.isText(v) );
 }
 
+var DarkAxisColor = '#999',
+    DarkTextColor = '#999',
+    DarkChartBgColor = '#666';
 
-var AxisColor = '#666',
-    TextColor = '#666',
+var AxisColor = '#999',
+    TextColor = '#999',
+    ChartBgColor = '#fff',
     FontFamily = "'Helvetica Neue',Helvetica,Arial,sans-serif";
 
 /* === START Highcharts === */
@@ -198,7 +202,7 @@ var YAxis = {
 
 var LineBasedBasicOptions = {
     tooltip: { 
-        crosshairs: [{color: '#bbb'},{color: '#bbb'}],
+        crosshairs: [{color: AxisColor},{color: AxisColor}],
     },
     yAxis: YAxis,
     xAxis: XAxis,
@@ -237,6 +241,7 @@ var BasicOptions = {
         backgroundColor: "none",
         style: {
             color: TextColor,
+            backgroundColor: ChartBgColor
         }
     },
     tooltip: {

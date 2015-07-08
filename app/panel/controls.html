@@ -1,9 +1,9 @@
 <div ng-if="controlsVisible">
     <div class="panel-controls">
-        <svg width="16" height="8" style="position:relative;top:-22px;left:2px;fill:#666">
+        <svg width="16" height="8" style="position:relative;top:-12px;left:2px;fill:#666">
             <polygon points="0,8 16,8 8,0"></polygon>
         </svg>
-        <div style="margin:0 20px 15px 20px;padding-top:5px;text-align:center">
+        <div style="margin:0 20px 15px 20px;text-align:center">
             <span ng-click="selectedConfig='general';" class="panel-config-item" ng-class="{'active': selectedConfig=='general'}">General</span><span ng-click="selectedConfig='datasources';" class="panel-config-item" ng-class="{'active': selectedConfig=='datasources'}">Datasources</span><span ng-click="selectedConfig='secondaries';" class="panel-config-item" ng-class="{'active': selectedConfig=='secondaries'}">Secondaries</span>
         </div>
         <div ng-if="selectedConfig=='general'" class="panel-config-item-content">
@@ -70,9 +70,9 @@
         <div ng-if="selectedConfig=='datasources'" class="panel-config-item-content">
             <div class="datasource-list" ui-sortable="dsDragDropConfig" ng-model="graph.datasources">
                 <!--<div class="seperator dark" style="margin:5px 0"></div>-->
-                <div ng-repeat="datasource in graph.datasources" class="datasource-list-item" style="background:#777;">
-                    <table style="width:100%;"><tr style="font-size:14px;">
-                        <td class="text-left" style="padding:10px;width:35px;border-radius:3px 0 0 0">
+                <div ng-repeat="datasource in graph.datasources" class="datasource-list-item" style="background:#aaa;">
+                    <table style="width:100%;"><tr style="font-size:14px;color: #555">
+                        <td class="text-left" style="padding:10px;width:35px;">
                             <span class="glyphicon glyphicon-option-vertical ds-mv-handle"></span>
                         </td>
                         <td class="text-left" style="word-wrap:break-word;word-break:break-all;padding:10px 0;cursor:pointer;font-weight:bold" data-toggle="collapse" data-target="[data-ds-id='{{graph.id}}-{{$index}}']" style="cursor:pointer;">{{datasource|datasourceLabel}}</td>
@@ -84,7 +84,7 @@
                         </td>
                     </tr></table>
                     <div class="collapse" data-ds-id="{{graph.id}}-{{$index}}">
-                        <div style="padding:10px;">
+                        <div style="padding:10px;" class="datasource-content">
                             <div datasource="datasource" datasource-provider></div>
                             <div style="margin:5px"></div>
                             <div class="input-group input-group-sm">

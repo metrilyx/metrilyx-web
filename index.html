@@ -68,10 +68,19 @@
 				    <annotations-editor ng-if="annotationsEnabled"></annotations-editor>
 				    <dashboards-list set-active-side-panel="setActiveSidePanel('dashboards')" active-side-panel="activeSidePanel"></dashboards-list>
 				</div>
-				<div id="top-panel">
+				<!--<div id="top-panel">
 					<time-selector ng-controller="timeSelectorController" ng-if="timeselectorEnabled"></time-selector>
-				</div>
+				</div>-->
 				<div id="dashboard-container" ng-class="{shrink: activeSidePanel!='none'}" style="overflow-x:hidden;">
+					<div class="row" style="margin:0">
+						<div class="col-md-5" style="padding:0">
+							<global-tags></global-tags>
+						</div>
+						<div class="col-md-7" style="padding:0">
+							<time-selector ng-controller="timeSelectorController" ng-if="timeselectorEnabled"></time-selector>
+						</div>
+					</div>
+					<div class="seperator light"></div>
 					<div ng-view></div>
 				</div>
 				<notifications ng-controller="notificationsController"></notifications>

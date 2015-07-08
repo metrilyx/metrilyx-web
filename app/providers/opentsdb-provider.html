@@ -17,12 +17,10 @@
     <div style="margin:3px"></div>
     <div style="padding: 0 0 0 10px;font-size:12px;">
         <div style="height:30px;display:table">
-            <div style="display:table-cell;vertical-align:middle">
-                <b>Tags</b>
-            </div>
+            <div style="display:table-cell;vertical-align:middle">Tags</div>
         </div>
         <div style="margin-left:30px;">
-            <div class="input-group-list">
+            <div>
                 <div class="input-group input-group-sm" ng-repeat="(tagKey, tagValue) in query.tags">
                     <span class="input-group-addon">{{tagKey}}</span>
                     <input type="text" class="form-control" ng-model="tagValue">

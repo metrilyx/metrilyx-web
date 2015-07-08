@@ -1,8 +1,12 @@
-<div class="dropdown" style="display:inline-block;font-size:12px">
+<div class="dropdown" style="display:inline-block;">
     <div class="dropdown-toggle" data-toggle="dropdown" id="autoupdate-ctrl">
-        <span style="padding:0 5px">Auto Update: {{selectedInterval.label}}</span><span class="caret"></span>
+        <div style="border-left:1px solid #ccc">
+            <button class="btn btn-theme btn-sm" style="border-radius:0;padding:13px 12px;border-left:1px solid #fff">
+                <span style="padding-right:5px">Auto-Update : {{selectedInterval.label}}</span><span class="caret"></span>
+            </button>
+        </div>
     </div>
-    <ul class="dropdown-menu dropdown-menu-right" role="menu" style="min-width:136px;margin-top:14px;">
+    <ul class="dropdown-menu" role="menu">
         <li ng-repeat="interval in updateIntervals" ng-class="{active: interval.value == selectedInterval.value}" class="update-interval">
             <a href="javacript:void(0)" ng-click="setUpdateInterval(interval)">{{interval.label}}</a>
         </li>

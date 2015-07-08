@@ -102,17 +102,22 @@ body#body,
 	background: none;
 	box-shadow: none;
 }
-/*
+
+auto-updater,
+relative-time-selector,
 #end-time-dropdown > .input-group > .input-group-addon,
 #end-time-dropdown > .input-group > .form-control,
 #start-time-dropdown > .input-group > .input-group-addon,
-#start-time-dropdown > .input-group > .form-control,
-select[ng-model="selectedTimeRange"] {
-	background: none;
-	box-shadow: none;
-	color: rgb(136, 136, 136);
+#start-time-dropdown > .input-group > .form-control {
+	color: #666;
 }
-
+#end-time-dropdown > .input-group > .input-group-addon,
+#end-time-dropdown > .input-group > .form-control,
+#start-time-dropdown > .input-group > .input-group-addon,
+#start-time-dropdown > .input-group > .form-control {
+	font-size: 12px;
+}
+/*
 #end-time-dropdown > .input-group > .form-control:focus,
 #end-time-dropdown > .input-group > .form-control:hover,
 #start-time-dropdown > .input-group > .form-control:focus,
@@ -138,12 +143,7 @@ table.table[time-selector] .btn.btn-default {
 	border: none;
 	outline: none;
 }
-/*
-table.table[time-selector] .input-group-addon:first-child {
-	padding: 0;
-	border: none;
-}
-*/
+
 table.table[time-selector]>tbody>tr>td {
 	padding: 0;
 	border: none;
@@ -408,7 +408,7 @@ select[ng-model="selectedTimeRange"]:focus {
 #dashboard-container {
 	position:absolute;
 	left:50px;
-	top:50px;
+	top:0px;
 	right:0px;
 	background: #eee;
 	transition: all 0.35s ease;
@@ -479,6 +479,8 @@ select[ng-model="selectedTimeRange"]:focus {
 	background: none;
 	border: none;
 	opacity: 0.5;
+	padding-left: 0;
+	padding-right: 0;
 }
 .dboard-edit-btn:hover,
 .dboard-edit-btn:active,
@@ -651,11 +653,11 @@ select[ng-model="selectedTimeRange"]:focus {
 .panel-config-item-content>.input-group:last-child {
 	margin-bottom: 0px;
 }
-
+/*
 .panel-config-item-content .input-group>.input-group-addon {
 	font-weight: bold;
 }
-
+*/
 .panel-config-item-content .input-group>.form-control {
 	z-index: 0;
 }
@@ -673,11 +675,16 @@ select[ng-model="selectedTimeRange"]:focus {
 }
 
 .datasource-list-item {
-	border-bottom: 1px solid #606060;
+	border-bottom: 1px solid #999;
 }
+.datasource-list .datasource-list-item:last-child {
+	border-bottom: none;
+}
+/*
 .datasource-list .datasource-list-item:first-child {
-	border-top: 1px solid #606060;
+	border-top: 1px solid #999;
 }
+*/
 
 .pod-header.input-group .btn.btn-default,
 .pod-header.input-group > .input-group-addon,
@@ -780,7 +787,7 @@ select[ng-model="selectedTimeRange"]:focus {
 	/*padding: 5px;*/
 	word-wrap:break-word;
 	word-break:break-all;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	/*border-bottom: 1px solid #eee;*/
 	background: #E8D05A;
 }
@@ -988,15 +995,22 @@ input[type=checkbox].form-control.mycheckbox {
 	background: none;
 	box-shadow: none;
 }
+
 table.table[time-selector] input.form-control {
 	border: none;
 	box-shadow: none;
 	transition: all 0.35s ease;
+	border-radius: 0;
 }
+
+table.table[time-selector] input.form-control:active,
+table.table[time-selector] input.form-control:focus,
 table.table[time-selector] input.form-control:hover {
-	border: 1px solid #666 !important;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	border: 1px solid #ddd;
 }
-table.table[time-selector] input.form-control:hover,
+/*
+table.table[time-selector] input.form-control:hover,*/
 .graph-ctrl-btn-content .input-group>textarea.form-control:hover,
 .graph-ctrl-btn-content .input-group>input.form-control:hover{
 	box-shadow: inset 0 2px 1em rgba(0,0,0,0.15);
@@ -1217,13 +1231,14 @@ a#export-btn {
  *
  *
  */
-
+/*.input-group.input-group-lg .form-control.editable-header,*/
 .form-control.editable-header {
 	transition: all 0.35s ease;
 	background: none;
 	border: none;
 	box-shadow: none;
 	padding-left: 0;
+	border-radius: 0px !important;
 }
 
 .form-control.editable-header:focus,
@@ -1231,7 +1246,7 @@ a#export-btn {
 .form-control.editable-header:hover {
 	box-shadow: inset 0 1px 1px rgba(150,150,150,0.1) !important;
 	padding-left: 10px!important;
-	border-radius: 3px!important;
+	/*border-radius: 3px!important;*/
 	border: 1px solid #eee !important;
 }
 
@@ -1289,11 +1304,11 @@ pre.default {
 .input-group-list>.input-group:first-child>.input-group-addon {
 	border-radius: 2px 0 0 0;
 }
-
 .input-group-list>.input-group>.form-control,
 .input-group-list>.input-group>.input-group-addon {
 	border-radius: 0;
 }
+
 .panel-controls .input-group-list>.input-group>.form-control,
 .panel-controls .input-group-list>.input-group>.input-group-addon {
 	border-bottom: none;
@@ -1316,12 +1331,12 @@ panel-controls .input-group-list>.input-group>.form-control,
 panel-controls .input-group-list>.input-group>.input-group-addon {
 	border-color: #666
 }
-
-panel-controls .input-group-list>.input-group:last-child>.form-control,
-panel-controls .input-group-list>.input-group:last-child>.input-group-addon {
-	border-bottom: 1px solid #666;
-}
 */
+.input-group-list>.input-group:last-child>.form-control,
+.input-group-list>.input-group:last-child>.input-group-addon {
+	border-bottom: 1px solid #777;
+}
+
 .panel-controls textarea {
 	resize: vertical;
 }
@@ -1332,16 +1347,16 @@ panel-controls .input-group-list>.input-group:last-child>.input-group-addon {
 }
 
 .metrilyx-panel {
-	border: 1px solid transparent;
-	border-radius: 3px;
-	/*margin-bottom: 10px;*/
+	/*border: 1px solid transparent*/;
+	/*border-radius: 3px;
+	margin-bottom: 10px;*/
 	background: #fff;
 }
 
 
 .panel-controls {
 	overflow-y:visible;
-	padding:10px 0 0 0;
+	padding:0;
 	/*border-radius: 3px;*/
 }
 /*
@@ -1364,11 +1379,25 @@ panel-controls .input-group-list>.input-group:last-child>.input-group-addon {
 /*.pod-controls-content .input-group>.input-group-addon,
 .pod-controls-content .input-group>.form-control,
 .pod-controls-content,*/
+/*
 .panel-controls .input-group>.input-group-addon,
 .panel-controls .input-group>.form-control,
-.panel-controls {
- 	color: #ccc;
- }
+*/
+.panel-controls,
+panel-controls .datasource-content .input-group>.input-group-addon,
+panel-controls .datasource-content .input-group>.form-control {
+ 	color: #aaa;
+}
+panel-controls .datasource-content {
+    background: #666;
+}
+panel-controls .datasource-content .input-group>.input-group-addon,
+panel-controls .datasource-content .input-group>.form-control {
+	border-color: #666;
+}
+panel-controls .datasource-content .input-group>.input-group-addon {
+	border: none;
+}
 
 /*.pod-controls-content .input-group>.input-group-addon,*/
 .panel-controls .input-group>.input-group-addon {
@@ -1381,22 +1410,25 @@ panel-controls .input-group-list>.input-group:last-child>.input-group-addon {
 }
 
 .metrilyx-pod {
-	background: none;
+	background: #e0e0e0;
 	/*border: 1px solid transparent;*/
+	border: 1px solid #ccc;
 	border-radius: 3px;
-}
+}/*
 .metrilyx-pod,
 .metrilyx-panel {
 	border-color: #ccc;
-}
+}*/
+
 /*
 .metrilyx-pod .input-group>.input-group-addon,
 .metrilyx-pod .input-group>.form-control,
-.pod-copy-btn-content-body,*/
-.metrilyx-panel .input-group>.input-group-addon,
-.metrilyx-panel .input-group>.form-control,
+.pod-copy-btn-content-body,
 panel-controls .input-group>.input-group-addon,
 panel-controls .input-group>.form-control,
+*/
+.metrilyx-panel .input-group>.input-group-addon,
+.metrilyx-panel .input-group>.form-control,
 .panel-config-item {
 	border-color: #777;
 }
