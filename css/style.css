@@ -327,7 +327,7 @@ button.btn.btn-theme:hover {
 .input-group.tag-key-value:hover > .input-group-addon:last-child {
 	opacity: 1;
 }
-#global-tags,
+#adhoc-side-panel,
 #event-annotations,
 #dashboard-list {
 	transition: all 0.35s ease;
@@ -699,64 +699,30 @@ select[ng-model="selectedTimeRange"]:focus {
 	font-weight: bold;
 	border-radius: 0;
 }
-/*
-.pod-header.input-group .btn.btn-default:active,
-.pod-header.input-group .btn.btn-default:hover,
-.pod-header.input-group .btn.btn-default:focus {
-	outline: none;
-	box-shadow: none;
-	color: #428bca;
-}
-*/
-/*
-.pod-header.input-group > .form-control:active,
-.pod-header.input-group > .form-control:focus,
-.pod-header.input-group > .form-control:hover {
-	box-shadow: inset 0 1px 1px rgba(0,0,0,0.085);
-}
-.pod-header.input-group > .form-control:focus,
-.pod-header.input-group > .form-control:active {
-	border: 1px solid #66afe9;
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-}
-*/
-/*
-.pod-header.input-group>.input-group-addon,
-.pod-header.input-group .btn.btn-default {
-	border: none;
-	border-radius: 0;
-	background: none;
-}
 
-
-*/
-/*
-.pod-hdr-menu-item-label {
-	padding-left: 10px;
+.pod-content.vertical>[data-pod-dnd=vertical]>[ng-repeat="graph in pod.panels"],
+.pod-content.vertical>[data-pod-dnd=vertical]>[ng-repeat="graph in pod.graphs"] {
+	border-bottom: 1px solid;
 }
-.pod > .pod-header > .input-group-btn > ul.dropdown-menu > li > a {
-	padding: 3px 10px !important;
+.pod-content.vertical>[data-pod-dnd=vertical]>[ng-repeat="graph in pod.panels"]:last-child,
+.pod-content.vertical>[data-pod-dnd=vertical]>[ng-repeat="graph in pod.graphs"]:last-child {
+	border-bottom: none;
 }
-.pod-hdr-btn-icon {
-	padding-top:3px;
-	padding-bottom:3px;
-}
-*/
-/*
-.pod-content [ng-repeat="graph in pod.panels"],
-.pod-content [ng-repeat="graph in pod.graphs"] {
-	border-top: 1px solid #ccc;
-}
-*/
 
 .pod-content.horizontal>.row>[ng-repeat="graph in pod.panels"],
 .pod-content.horizontal>.row>[ng-repeat="graph in pod.graphs"] {
-	/*border-right: 1px solid #ccc;*/
-	padding: 0 10px 0 0;
+	border-right: 1px solid;
 }
 .pod-content.horizontal>.row>[ng-repeat="graph in pod.panels"]:last-child,
 .pod-content.horizontal>.row>[ng-repeat="graph in pod.graphs"]:last-child {
-	padding-right: 0;
+	border-right: none;
+}
+/* This must be after the above block */
+.pod-content.vertical>[data-pod-dnd=vertical]>[ng-repeat="graph in pod.panels"],
+.pod-content.vertical>[data-pod-dnd=vertical]>[ng-repeat="graph in pod.graphs"],
+.pod-content.horizontal>.row>[ng-repeat="graph in pod.panels"],
+.pod-content.horizontal>.row>[ng-repeat="graph in pod.graphs"] {
+	border-color: #e0e0e0;
 }
 
 
@@ -796,7 +762,7 @@ select[ng-model="selectedTimeRange"]:focus {
 	transition: all 0.35s ease;
 }
 .graph-footer {
-	padding: 0 4px 0px 4px;
+	padding: 0 3px 3px 3px;
 	font-size: 13px;
 }
 

@@ -1,0 +1,27 @@
+<div class="side-panel-header" ng-class="activeSidePanel == 'adhoc' ? 'active' : ''" title="TDB">
+    <span class="glyphicon glyphicon-stats side-panel-btn" ng-click="setActiveSidePanel('adhoc')"></span>
+    <svg height="20" width="10" class="side-panel-arrow" ng-class="activeSidePanel == 'adhoc' ? 'active' : ''">
+        <polygon points="10,0 10,20 0,10" style="stroke:#444;fill:#444"></polygon>
+    </svg>
+</div>
+<div id="adhoc-side-panel" ng-if="activeSidePanel=='adhoc'">
+    <div class="side-panel-content-header">TDB</div>
+    <div>
+        <span class="glyphicon glyphicon-search" style="position:absolute;left:6px;top:54px;"></span>
+        <input type="text" style="width:100%;padding: 6px 0px 6px 22px;background:none;color:#aaa;border:none" ng-model="metricSearch" ng-change="searchForMetric()">
+    </div>
+    <div ng-if="metricSearchRslt.length>0">
+        <input type="checkbox" ng-model="selectedAllMetrics" ng-change="toggleSelectAll()">
+    </div>
+    <div style="overflow-y:scroll;height:100%">
+        <div ng-repeat="metric in metricSearchRslt">
+            <input type="checkbox" ng-model="metric.selected">
+            <span>{{metric.name}}</span>
+            <span class="glyphicon glyphicon-plus"></span>
+        </div>
+    </div>
+    <div style="position:fixed;bottom:0">
+        <button class="btn btn-default btn-sm">Add Selected</button>
+        <button class="btn btn-default btn-sm">Add All</button>
+    </div>
+</div>

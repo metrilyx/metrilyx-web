@@ -202,7 +202,7 @@ angular.module('datasource.providers', [])
                 dfd.resolve([]);
             
             } else if( cache[query] === undefined ) {
-                $http.get('http://'+prov.host+'/api/suggest?type='+searchType+'&q='+query)
+                $http.get('http://'+prov.host+'/api/suggest?max=100&type='+searchType+'&q='+query)
                     .success(function(res){
                         cache[query] = res;
                         dfd.resolve(res);
